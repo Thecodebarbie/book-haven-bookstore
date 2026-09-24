@@ -8,7 +8,9 @@ export default function Home() {
           <a
             href="#"
             className="font-serif text-3xl tracking-tight"
-          ></a>
+          >
+            Book Haven
+          </a>
       </header>
     </main>
   );
