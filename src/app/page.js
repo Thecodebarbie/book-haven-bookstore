@@ -522,6 +522,40 @@ export default function Home() {
     </div>
   </div>
 </section>
+
+ {/* Promotional Banner */}
+<section
+  className="relative bg-cover bg-center px-6 py-16 lg:px-10"
+  style={{
+    backgroundImage: "url('/images/promo-banner.png')",
+  }}
+>
+  {/* Shadowy Edge Overlay */}
+<div className="absolute inset-0 bg-[linear-gradient(to_right,#2E2E4E_0%,transparent_25%,transparent_75%,#2E2E4E_100%)]"></div>
+  {/* Text Content */}
+  <div className="relative mx-auto max-w-7xl text-white">
+    <p className="mb-2 text-xs font-semibold tracking-[0.2em]">
+      SPECIAL OFFER
+    </p>
+
+    <h2 className="font-serif text-4xl">
+      Buy 2, Get 1 50% Off
+    </h2>
+
+    <p className="mt-3 max-w-sm text-sm">
+      On all in-stock books. Because one
+      <br />
+      is never enough.
+    </p>
+
+    <a
+      href="#"
+      className="mt-5 inline-block bg-[#5C2E5C] px-8 py-3 text-xs tracking-[0.15em] text-white"
+    >
+      SHOP THE DEAL →
+    </a>
+  </div>
+</section>
 </main>
   );
 }
