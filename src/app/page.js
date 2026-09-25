@@ -619,8 +619,41 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="w-full bg-[#2E2E4E] px-10 py-12 text-white">
-        {/* Main Footer */}
-        <div className="grid w-full grid-cols-4 gap-12">
+        {/* Newsletter */}
+  <div className="mb-10 text-center">
+    <p className="mb-2 text-xs tracking-[0.2em] text-white/60">
+      THE HAVEN LETTER
+    </p>
+
+    <h3 className="font-serif text-2xl">
+      A little something for your inbox.
+    </h3>
+
+    <p className="mx-auto mt-2 max-w-lg text-sm text-white/60">
+      New arrivals, staff picks, author events, and bookstore happenings —
+      thoughtfully delivered.
+    </p>
+
+    <form className="mx-auto mt-5 flex max-w-lg">
+      <input
+        type="email"
+        placeholder="Enter your email address"
+        aria-label="Email address"
+        className="w-full border border-white/30 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#5C2E5C]"
+      />
+
+      <button
+        type="submit"
+        className="bg-[#5C2E5C] px-6 py-2.5 text-xs tracking-[0.15em] text-white hover:opacity-80"
+      >
+        SUBSCRIBE
+      </button>
+    </form>
+  </div>
+
+  {/* Main Footer */}
+  <div className="grid w-full grid-cols-4 gap-12">
+
           {/* Logo */}
           <div>
             <div className="flex items-center gap-4">
@@ -647,19 +680,19 @@ export default function Home() {
             <h3 className="mb-4 text-xs tracking-[0.2em]">SHOP</h3>
 
             <div className="flex flex-col gap-3 text-sm text-white/70">
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 New Arrivals
               </a>
-              <a href="#monthly-edit" className="hover:text-[#5C2E5C]">
+              <a href="#monthly-edit" className="hover:text-[#8bb990]">
                 This Month&apos;s Edit
               </a>
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 Fiction
               </a>
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 Nonfiction
               </a>
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 Young Adult
               </a>
               {/* <a href="#" className="hover:text-white">Gifts & Accessories</a> future feature */}
@@ -669,20 +702,20 @@ export default function Home() {
           {/* About */}
           <div>
             <h3 className="mb-4 text-xs tracking-[0.2em]">
-              <a href="#about" className="hover:text-[#a4adff]">
+              <a href="#about" className="hover:text-[#8bb990]">
                 ABOUT
               </a>
             </h3>
 
             <div className="flex flex-col gap-3 text-sm text-white/70">
-              <a href="#hero" className="hover:text-[#a4adff]">
+              <a href="#hero" className="hover:text-[#8bb990]">
                 Home
               </a>
               {/*<a href="#" className="hover:text-white">Our Story</a> */}
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 The Haven Circle
               </a>
-              <a href="#" className="hover:text-[#a4adff]">
+              <a href="#" className="hover:text-[#8bb990]">
                 Contact
               </a>
             </div>
@@ -715,6 +748,7 @@ export default function Home() {
               <a href="#" className="hover:opacity-60">
                 TikTok
               </a>
+              
             </div>
           </div>
         </div>
