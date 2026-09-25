@@ -1,6 +1,48 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const books = [
+   
+    {
+      category: "Nonfiction",
+      title: "Notes on Stillness",
+      author: "Jordan Ellis",
+      price: "$19.00",
+      image: "/images/notes-on-stillness.png",
+    },
+     {
+      category: "Fiction",
+      title: "The Far Field",
+      author: "Elise Carter",
+      price: "$24.00",
+      image: "/images/the-far-field.png",
+    },
+    {
+      category: "Children's",
+      title: "A Wilder Garden",
+      author: "Marlowe James",
+      price: "$28.00",
+      image: "/images/a-wilder-garden.png",
+    },
+    {
+      category: "Bestsellers",
+      title: "The Moon Archive",
+      author: "S. L. Monroe",
+      price: "$22.00",
+      image: "/images/the-moon-archive.png",
+    },
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredBooks =
+    selectedCategory === "All"
+      ? books
+      : books.filter((book) => book.category === selectedCategory);
+
   return (
     <main className="min-h-screen bg-[#f7f3ed] text-[#5C2E5C]">
       {/* Promotional Banner */}
@@ -369,6 +411,117 @@ export default function Home() {
   </div>
       </section>
 
-    </main>
+      {/* This Month's Edit */}
+<section className="border-b border-[#17233c]/15 px-6 py-16 lg:px-10">
+  <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[300px_1fr]">
+
+    {/* Left Side */}
+    <div className="lg:border-r lg:border-[#17233c]/15 lg:pr-10">
+      <p className="mb-3 text-xs tracking-[0.2em] text-[#5C2E5C]">
+        THE BOOKSHELF
+      </p>
+
+      <h2 className="font-serif text-4xl text-[#2E2E4E]">
+        This month&apos;s edit
+      </h2>
+
+      <p className="mt-5 text-sm leading-relaxed text-[#2E2E4E]/70">
+        Fresh picks, returning favorites,
+        <br />
+        and the stories everyone&apos;s talking about.
+      </p>
+
+      <a
+        href="#"
+        className="mt-7 inline-block text-sm tracking-[0.15em] text-[#5C2E5C] underline underline-offset-8 hover:opacity-60"
+      >
+        SHOP ALL →
+      </a>
+    </div>
+
+    {/* Right Side */}
+    <div>
+
+      {/* Category Filters */}
+      <div className="mb-8 flex flex-wrap gap-8">
+        {["All", "Fiction", "Nonfiction", "Children's", "Bestsellers"].map(
+          (category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setSelectedCategory(category)}
+              className={`pb-1 text-xs tracking-[0.15em] uppercase ${
+                selectedCategory === category
+                  ? "border-b border-[#5C2E5C] text-[#5C2E5C]"
+                  : "text-[#2E2E4E]/50 hover:text-[#5C2E5C]"
+              }`}
+            >
+              {category}
+            </button>
+          ),
+        )}
+      </div>
+
+      {/* Book Grid */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {filteredBooks.map((book) => (
+          <div
+            key={book.title}
+            className="border-r border-[#17233c]/15 pr-5"
+          >
+            {/* Book Cover */}
+            <div className="relative bg-white/40 p-4">
+              <Image
+                src={book.image}
+                alt={book.title}
+                width={220}
+                height={300}
+                className="mx-auto h-[250px] w-auto object-contain"
+              />
+
+              {/* Heart */}
+              <button
+                type="button"
+                aria-label={`Add ${book.title} to wishlist`}
+                className="absolute right-2 top-2 text-xl text-[#5C2E5C]"
+              >
+                ♡
+              </button>
+            </div>
+
+            {/* Book Information */}
+            <p className="mt-4 text-[10px] tracking-[0.15em] uppercase text-[#5C2E5C]">
+              {book.category}
+            </p>
+
+            <h3 className="mt-1 font-serif text-lg text-[#2E2E4E]">
+              {book.title}
+            </h3>
+
+            <p className="mt-1 text-xs text-[#2E2E4E]/60">
+              by {book.author}
+            </p>
+
+            <p className="mt-3 text-sm text-[#2E2E4E]">
+              {book.price}
+            </p>
+
+            {/* Add to Bag */}
+            <div className="mt-4 border-t border-[#17233c]/15 pt-4">
+              <button
+                type="button"
+                className="text-xs tracking-[0.15em] text-[#2E2E4E] hover:text-[#5C2E5C]"
+              >
+                ADD TO BAG →
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
   );
 }
