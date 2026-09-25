@@ -556,6 +556,68 @@ export default function Home() {
     </a>
   </div>
 </section>
+
+{/* Client Satisfaction */}
+
+<section className="bg-[#f7f3ed] px-6 py-16 lg:px-10">
+  <div className="mx-auto max-w-7xl text-center">
+
+    <p className="mb-3 text-xs tracking-[0.2em] text-[#5C2E5C]">
+      CLIENT HIGHLIGHTS
+    </p>
+
+    <h2 className="font-serif text-4xl text-[#2E2E4E]">
+      Loved by our readers
+    </h2>
+
+    <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+
+      {/* Review 1 */}
+      <div className="border border-[#2E2E4E]/15 p-8">
+        <p className="text-lg text-[#5C2E5C]">★★★★★</p>
+
+        <p className="mt-5 font-serif text-lg italic leading-relaxed text-[#2E2E4E]">
+          “Book Haven always feels like coming home. I never leave
+          without finding something special.”
+        </p>
+
+        <p className="mt-6 text-xs tracking-[0.15em] text-[#2E2E4E]/60">
+          — EMILY R.
+        </p>
+      </div>
+
+      {/* Review 2 */}
+      <div className="border border-[#2E2E4E]/15 p-8">
+        <p className="text-lg text-[#5C2E5C]">★★★★★</p>
+
+        <p className="mt-5 font-serif text-lg italic leading-relaxed text-[#2E2E4E]">
+          “The selection is thoughtful and unique. It&apos;s my favorite
+          place to discover new books.”
+        </p>
+
+        <p className="mt-6 text-xs tracking-[0.15em] text-[#2E2E4E]/60">
+          — SARAH M.
+        </p>
+      </div>
+
+      {/* Review 3 */}
+      <div className="border border-[#2E2E4E]/15 p-8">
+        <p className="text-lg text-[#5C2E5C]">★★★★★</p>
+
+        <p className="mt-5 font-serif text-lg italic leading-relaxed text-[#2E2E4E]">
+          “Beautiful books, wonderful recommendations, and such a warm
+          atmosphere.”
+        </p>
+
+        <p className="mt-6 text-xs tracking-[0.15em] text-[#2E2E4E]/60">
+          — JORDAN T.
+        </p>
+      </div>
+      
+
+    </div>
+  </div>
+</section>
 </main>
   );
 }
