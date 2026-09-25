@@ -29,7 +29,7 @@ export default function Home() {
               href="#"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
-              New Realeases
+              New Releases
             </a>
             <a
               href="#"
