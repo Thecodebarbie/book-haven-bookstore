@@ -103,6 +103,31 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+       {/* Hero */}
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+          {/* Left: Text content */}
+          <div>
+            <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
+              AN INDEPENDENT BOOKSTORE
+            </p>
+            <h1 className="font-serif text-6xl leading-tight text-[#2E2E4E]">
+              Stories
+              <br />
+              feel
+              <br />
+              <span className="italic text-[#5C2E5C]">like home.</span>
+            </h1>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-[#2E2E4E]/70">
+              Thoughtful books for curious minds. Handpicked titles, beautiful
+              editions, and a welcoming place for every reader.
+            </p>
+
+            <div className="mt-8 flex items-center gap-6"></div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
