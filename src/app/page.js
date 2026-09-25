@@ -103,7 +103,80 @@ export default function Home() {
           </div>
         </div>
       </header>
-      {/* Hero */}
+
+{/* Hero */}
+<section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-center">
+    {/* Left: Text content */}
+    <div className="lg:pl-32">
+  <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
+    AN INDEPENDENT BOOKSTORE
+  </p>
+  <h1 className="font-serif text-6xl leading-tight text-[#2E2E4E]">
+    Stories
+    <br />
+    feel
+    <br />
+    <span className="italic text-[#5C2E5C]">like home.</span>
+  </h1>
+  <p className="mt-6 max-w-md text-sm leading-relaxed text-[#2E2E4E]/70">
+    Thoughtful books for curious minds. Handpicked titles, beautiful
+    editions, and a welcoming place for every reader.
+  </p>
+
+      <div className="mt-8 flex items-center gap-6">
+        <a
+          href="#"
+          className="bg-[#5C2E5C] px-6 py-3 text-sm tracking-wide text-white hover:opacity-90"
+        >
+          BROWSE THE COLLECTION →
+        </a>
+        <a
+          href="#"
+          className="text-sm tracking-wide text-[#2E2E4E] underline underline-offset-4 hover:opacity-60"
+        >
+          OUR PHILOSOPHY
+        </a>
+      </div>
+    </div>
+
+    {/* Right: Photo with overlay card */}
+    <div className="relative lg:ml-1">
+      <Image
+        src="/images/bookstore-hero.jpg"
+        alt="Cozy bookstore reading nook"
+        width={800}
+        height={900}
+        className="h-[520px] w-full object-cover"
+      />
+
+      <div className="absolute bottom-8 left-8 bg-[#f7f3ed] px-6 py-4 shadow-lg">
+        <p className="text-xs tracking-[0.15em] text-[#5C2E5C]">
+          OPEN EVERY DAY
+        </p>
+        <p className="mt-1 font-serif text-lg text-[#2E2E4E]">
+          Come in, stay a while.
+        </p>
+        <address className="mt-2 flex items-center gap-1 text-xs not-italic text-[#2E2E4E]/70">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" />
+            <circle cx="12" cy="9.5" r="2.5" />
+          </svg>
+          48 Haven Street · 9–6
+        </address>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* Hero 
 <section className="relative flex h-[640px] items-center px-6 lg:px-10">
   <Image
     src="/images/bookstore-hero.jpg"
@@ -145,7 +218,82 @@ export default function Home() {
       </a>
     </div>
   </div>
-</section>
+</section> */}
+
+      {/* Feature Highlights */}
+      <section className="border-b border-[#17233c]/15 bg-[#f7f3ed] px-6 py-14 lg:px-10">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 text-center lg:grid-cols-4 lg:divide-x lg:divide-[#17233c]/15">
+          <div className="flex flex-col items-center gap-3">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d="M12 5c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V4c-3-1-6-.5-8 1Z" />
+              <path d="M12 5v13" />
+            </svg>
+            <h2 className="font-serif text-lg text-[#2E2E4E]">
+              Curated Collections
+            </h2>
+            <p className="text-xs text-[#2E2E4E]/70">Thoughtfully chosen, always.</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d="M4 9h16v11H4z" />
+              <path d="M2 6h20v3H2z" />
+              <path d="M12 6v14" />
+              <path d="M12 6c-1.5-3-6-3-6 0s4.5 3 6 0Z" />
+              <path d="M12 6c1.5-3 6-3 6 0s-4.5 3-6 0Z" />
+            </svg>
+            <h2 className="font-serif text-lg text-[#2E2E4E]">Unique Gifts</h2>
+            <p className="text-xs text-[#2E2E4E]/70">For every book lover.</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d="M3 7h11v9H3z" />
+              <path d="M14 10h4l3 3v3h-7z" />
+              <circle cx="7" cy="18" r="1.6" />
+              <circle cx="17.5" cy="18" r="1.6" />
+            </svg>
+            <h2 className="font-serif text-lg text-[#2E2E4E]">Free Shipping</h2>
+            <p className="text-xs text-[#2E2E4E]/70">On orders over $50.</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d="M12 20.5S3.5 15.5 3.5 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8.5 2.5c0 6-8.5 11-8.5 11Z" />
+            </svg>
+            <h2 className="font-serif text-lg text-[#2E2E4E]">A Community</h2>
+            <p className="text-xs text-[#2E2E4E]/70">Readers. Dreamers. You.</p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
