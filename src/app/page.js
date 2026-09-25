@@ -294,6 +294,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Category Tiles */}
+<section className="px-6 py-16 lg:px-10">
+  <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 lg:grid-cols-5">
+    <a href="#" className="group relative h-72 overflow-hidden">
+      <Image
+        src="/images/category-new-arrivals.png"
+        alt="New Arrivals"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#2E2E4E]/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 pb-6 text-center text-white">
+        <h2 className="text-sm tracking-wide">NEW ARRIVALS</h2>
+        <span aria-hidden="true">→</span>
+      </div>
+    </a>
+    <a href="#" className="group relative h-72 overflow-hidden">
+      <Image
+        src="/images/category-fiction.png"
+        alt="Fiction"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#2E2E4E]/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 pb-6 text-center text-white">
+        <h2 className="text-sm tracking-wide">FICTION</h2>
+        <span aria-hidden="true">→</span>
+      </div>
+    </a>
+
+    <a href="#" className="group relative h-72 overflow-hidden">
+      <Image
+        src="/images/category-nonfiction.png"
+        alt="Nonfiction"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#2E2E4E]/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 pb-6 text-center text-white">
+        <h2 className="text-sm tracking-wide">NONFICTION</h2>
+        <span aria-hidden="true">→</span>
+      </div>
+    </a>
+
+    <a href="#" className="group relative h-72 overflow-hidden">
+      <Image
+        src="/images/category-yadult.png"
+        alt="Young Adult"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#2E2E4E]/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 pb-6 text-center text-white">
+        <h2 className="text-sm tracking-wide">YOUNG ADULT</h2>
+        <span aria-hidden="true">→</span>
+      </div>
+    </a>
+
+    <a href="#" className="group relative h-72 overflow-hidden">
+      <Image
+        src="/images/category-gifts.png"
+        alt="Gifts and Accessories"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#2E2E4E]/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 pb-6 text-center text-white">
+        <h2 className="text-sm tracking-wide">GIFTS &amp; ACCESSORIES</h2>
+        <span aria-hidden="true">→</span>
+      </div>
+    </a>
+  </div>
+      </section>
+
     </main>
   );
 }
