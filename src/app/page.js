@@ -613,11 +613,108 @@ export default function Home() {
           — JORDAN T.
         </p>
       </div>
-      
 
     </div>
   </div>
 </section>
+
+  {/* Footer */}
+<footer className="w-full bg-[#2E2E4E] px-10 py-12 text-white">
+
+  {/* Main Footer */}
+  <div className="grid w-full grid-cols-4 gap-12">
+
+    {/* Logo */}
+    <div>
+      <div className="flex items-center gap-4">
+        <Image
+          src="/images/regal-quill-logo.png"
+          alt="Book Haven"
+          width={80}
+          height={80}
+          className="h-20 w-20 object-contain"
+        />
+
+        <span className="whitespace-nowrap font-serif text-2xl">
+          Book Haven
+        </span>
+      </div>
+
+      <p className="mt-4 text-sm text-white/70">
+        Thoughtful books for curious minds.
+      </p>
+    </div>
+
+    {/* Shop */}
+    <div>
+      <h3 className="mb-4 text-xs tracking-[0.2em]">
+        SHOP
+      </h3>
+
+      <div className="flex flex-col gap-3 text-sm text-white/70">
+        <a href="#" className="hover:text-white">New Arrivals</a>
+        <a href="#" className="hover:text-white">Fiction</a>
+        <a href="#" className="hover:text-white">Nonfiction</a>
+        <a href="#" className="hover:text-white">Young Adult</a>
+       {/* <a href="#" className="hover:text-white">Gifts & Accessories</a> future feature */}
+      </div>
+    </div>
+
+    {/* About */}
+    <div>
+      <h3 className="mb-4 text-xs tracking-[0.2em]">
+        ABOUT
+      </h3>
+
+      <div className="flex flex-col gap-3 text-sm text-white/70">
+      <a href="#" className="hover:text-white">Home</a>
+        {/*<a href="#" className="hover:text-white">Our Story</a> */}
+        <a href="#" className="hover:text-white">The Haven Circle</a>
+        <a href="#" className="hover:text-white">Contact</a>
+      </div>
+    </div>
+
+    {/* Visit */}
+    <div>
+      <h3 className="mb-4 text-xs tracking-[0.2em]">
+        VISIT US
+      </h3>
+
+      <p className="text-sm text-white/70">
+        48 Haven Street
+        <br /> 
+        Monday –Friday: 9 a.m. to 8 p.m.
+        <br />
+        Saturday: 10 a.m. to 6 p.m.
+        <br />
+        Sunday: 11 a.m. to 5 p.m.
+      </p>
+
+      <div className="mt-5 flex gap-4 text-sm">
+        <a href="#" className="hover:opacity-60">Instagram</a>
+        <a href="#" className="hover:opacity-60">Facebook</a>
+        <a href="#" className="hover:opacity-60">X</a>
+                <a href="#" className="hover:opacity-60">TikTok</a>
+      </div>
+    </div>
+
+  </div>
+
+  {/* Bottom Footer */}
+  <div className="mt-12 flex w-full items-center justify-between border-t border-white/20 pt-6 text-xs text-white/50">
+
+    <p className="whitespace-nowrap">
+      © 2026 Book Haven Bookstore. All rights reserved.
+    </p>
+
+    <div className="flex gap-6 whitespace-nowrap">
+      <a href="#" className="hover:text-white">Privacy Policy</a>
+      <a href="#" className="hover:text-white">Terms</a>
+    </div>
+
+  </div>
+
+</footer>
 </main>
   );
 }
