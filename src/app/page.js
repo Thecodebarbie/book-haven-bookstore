@@ -103,31 +103,49 @@ export default function Home() {
           </div>
         </div>
       </header>
+      {/* Hero */}
+<section className="relative flex h-[640px] items-center px-6 lg:px-10">
+  <Image
+    src="/images/bookstore-hero.jpg"
+    alt="Cozy bookstore reading nook"
+    fill
+    priority
+    className="object-cover"
+  />
+  <div className="absolute inset-0 bg-[#2E2E4E]/50" />
 
-       {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
-          {/* Left: Text content */}
-          <div>
-            <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
-              AN INDEPENDENT BOOKSTORE
-            </p>
-            <h1 className="font-serif text-6xl leading-tight text-[#2E2E4E]">
-              Stories
-              <br />
-              feel
-              <br />
-              <span className="italic text-[#5C2E5C]">like home.</span>
-            </h1>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-[#2E2E4E]/70">
-              Thoughtful books for curious minds. Handpicked titles, beautiful
-              editions, and a welcoming place for every reader.
-            </p>
+  <div className="relative mx-auto max-w-7xl">
+    <p className="mb-4 text-xs tracking-[0.2em] text-[#fcf1fc]">
+      AN INDEPENDENT BOOKSTORE
+    </p>
+    <h1 className="font-serif text-6xl leading-tight text-[#fcf1fc]">
+      Stories
+      <br />
+      feel
+      <br />
+      <span className="italic text-[#fcf1fc]">like home.</span>
+    </h1>
+    <p className="mt-6 max-w-md text-sm leading-relaxed text-[#fcf1fc]">
+      Thoughtful books for curious minds. Handpicked titles, beautiful
+      editions, and a welcoming place for every reader.
+    </p>
 
-            <div className="mt-8 flex items-center gap-6"></div>
-          </div>
-        </div>
-      </section>
+    <div className="mt-8 flex items-center gap-6">
+      <a
+        href="#"
+        className="bg-[#5C2E5C] px-6 py-3 text-sm tracking-wide text-white hover:opacity-90"
+      >
+        BROWSE THE COLLECTION →
+      </a>
+      <a
+        href="#"
+        className="text-sm tracking-wide text-[#fcf1fc] underline underline-offset-4 hover:opacity-60"
+      >
+        OUR PHILOSOPHY
+      </a>
+    </div>
+  </div>
+</section>
     </main>
   );
 }
