@@ -10,7 +10,7 @@ export default function Gallery() {
   const miniCartRef = useRef(null);
   const [orderComplete, setOrderComplete] = useState(false);
   const [addedProductId, setAddedProductId] = useState(null);
-
+  const [savedProducts, setSavedProducts] = useState([]);
   // Close Mini Cart When Clicking Outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -20,9 +20,8 @@ export default function Gallery() {
     };
 
     const handleScroll = () => {
-    setIsMiniCartOpen(false);
-  };
-
+      setIsMiniCartOpen(false);
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("scroll", handleScroll);
@@ -46,9 +45,23 @@ export default function Gallery() {
     setCart([...cart, book]);
     setAddedProductId(book.id);
 
-  setTimeout(() => {
-    setAddedProductId(null);
-  }, 2000);
+    setTimeout(() => {
+      setAddedProductId(null);
+    }, 2000);
+  };
+
+  // Remove Individual Product From Cart
+  const removeFromCart = (indexToRemove) => {
+    setCart(cart.filter((_, index) => index !== indexToRemove));
+  };
+
+  // Save or Unsave Product
+  const toggleSavedProduct = (book) => {
+    setSavedProducts((currentSaved) =>
+      currentSaved.some((item) => item.id === book.id)
+        ? currentSaved.filter((item) => item.id !== book.id)
+        : [...currentSaved, book],
+    );
   };
 
   {
@@ -576,6 +589,23 @@ export default function Gallery() {
                             ${book.price.toFixed(2)}
                           </p>
                         )}
+                        {/* Remove Product From Cart Button */}
+                        <button
+                          type="button"
+                          onClick={() => removeFromCart(index)}
+                          className="mt-3 mr-8 text-xs tracking-[0.1em] text-[#742C36] uppercase hover:underline"
+                        >
+                          Remove
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleSavedProduct(book)}
+                          className="text-xs tracking-[0.1em] text-[#5C2E5C] uppercase hover:underline"
+                        >
+                          {savedProducts.some((item) => item.id === book.id)
+                            ? "Added to Bookmarks"
+                            : "Add to Bookmarks"}
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -661,8 +691,8 @@ export default function Gallery() {
                   className="mt-4 w-full border border-[#5C2E5C] px-4 py-2.5 text-[12px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
                 >
                   {addedProductId === book.id
-  ? "Added to Cart Successfully"
-  : "Add to Cart"}
+                    ? "Added to Cart Successfully"
+                    : "Add to Cart"}
                 </button>
               </div>
             </div>
