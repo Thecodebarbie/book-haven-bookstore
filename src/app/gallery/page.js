@@ -9,6 +9,7 @@ export default function Gallery() {
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
   const miniCartRef = useRef(null);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [addedProductId, setAddedProductId] = useState(null);
 
   // Close Mini Cart When Clicking Outside
   useEffect(() => {
@@ -43,6 +44,11 @@ export default function Gallery() {
   // Add Product To Cart Function
   const addToCart = (book) => {
     setCart([...cart, book]);
+    setAddedProductId(book.id);
+
+  setTimeout(() => {
+    setAddedProductId(null);
+  }, 2000);
   };
 
   {
@@ -654,7 +660,9 @@ export default function Gallery() {
                   onClick={() => addToCart(book)}
                   className="mt-4 w-full border border-[#5C2E5C] px-4 py-2.5 text-[12px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
                 >
-                  Add to Cart
+                  {addedProductId === book.id
+  ? "Added to Cart Successfully"
+  : "Add to Cart"}
                 </button>
               </div>
             </div>
