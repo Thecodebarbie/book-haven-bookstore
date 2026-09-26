@@ -7,15 +7,15 @@ export default function Gallery() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const [orderComplete, setOrderComplete] = useState(false);
 
   const clearCart = () => {
     setCart([]);
   };
 
-  const processOrder = () => {
-    alert("Thank you for your order.");
+  const checkout = () => {
     setCart([]);
-    setIsCartOpen(false);
+    setOrderComplete(true);
   };
 
   return (
@@ -129,7 +129,7 @@ export default function Gallery() {
 
             {/* Mini Cart */}
             {isMiniCartOpen && (
-              <div className="absolute top-[65px] right-45 z-40 w-[340px] border border-[#2E2E4E]/15 bg-[#F8F4EC] p-6 text-left shadow-lg">
+              <div className="absolute top-16.25 right-45 z-40 w-85 border border-[#2E2E4E]/15 bg-[#F8F4EC] p-6 text-left shadow-lg">
                 <div className="mb-5 flex items-center justify-between border-b border-[#2E2E4E]/15 pb-4">
                   <p className="text-xs tracking-[0.15em] text-[#5C2E5C] uppercase">
                     Your Bag
@@ -320,9 +320,9 @@ export default function Gallery() {
           ></div>
 
           {/* Cart Drawer */}
-          <div className="absolute top-0 right-0 flex h-full w-[450px] flex-col bg-[#F8F4EC] p-8 shadow-xl">
+          <div className="absolute top-0 right-0 flex h-full w-112.5 flex-col bg-[#F8F4EC] p-8 shadow-xl">
             {/* Cart Header */}
-            <div className="flex items-center justify-between border-b border-[#2E2E4E]/15 pb-5">
+            <div className="mb-6 flex items-center justify-between">
               <h2 className="font-serif text-[28px] text-[#2E2E4E]">
                 Your Cart
               </h2>
@@ -337,37 +337,40 @@ export default function Gallery() {
               </button>
             </div>
 
-            {/* Empty Cart */}
+            {/*  Cart Statud Message*/}
             <div className="flex flex-1 items-center justify-center">
               <p className="font-serif text-[18px] text-[#2E2E4E]/50">
-                Your cart is empty.
+                {orderComplete ? "Thank you for your order." : "Your cart is empty."}
               </p>
             </div>
-            
-            {/* Cart Actions */}
-<div className="border-t border-[#2E2E4E]/15 pt-6">
-  <div className="flex gap-3">
-    <button
-      type="button"
-      className="flex-1 border border-[#5C2E5C] px-4 py-3 text-[13px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
-    >
-      Clear Cart
-    </button>
 
-    <button
-      type="button"
-      className="flex-1 bg-[#5C2E5C] px-4 py-3 text-[13px] tracking-[0.12em] text-white uppercase transition hover:opacity-85"
-    >
-      Process Order
-    </button>
-  </div>
-</div>
+            {/* Cart Actions */}
+
+            {/* Clear Cart Button */}
+            <div className="border-t border-[#2E2E4E]/15 pt-6">
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={clearCart}
+                  className="flex-1 border border-[#5C2E5C] px-4 py-3 text-[13px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
+                >
+                  Clear Cart
+                </button>
+
+                {/* Checkout Button */}
+
+                <button
+                  type="button"
+                  onClick={checkout}
+                  className="flex-1 bg-[#5C2E5C] px-4 py-3 text-[13px] tracking-[0.12em] text-white uppercase transition hover:opacity-85"
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-
       )}
-
-      
 
       {/* Book Gallery */}
 
