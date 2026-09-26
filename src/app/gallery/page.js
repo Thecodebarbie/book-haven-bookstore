@@ -11,8 +11,10 @@ export default function Gallery() {
   const [orderComplete, setOrderComplete] = useState(false);
   const [addedProductId, setAddedProductId] = useState(null);
   const [savedProducts, setSavedProducts] = useState([]);
-  // Undo Recently Bookmarked Product in Cart 
+    // Undo Recently Bookmarked Product in Cart 
   const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
+  // Selected Gallery Category
+const [selectedCategory, setSelectedCategory] = useState("All");
 
 
   // Close Mini Cart When Clicking Outside
@@ -153,7 +155,7 @@ const undoBookmark = () => {
       title: "Notes on Stillness",
       author: "Jordan Ellis",
       price: 19,
-      category: "Nonfiction",
+      category: ["Nonfiction", "Young Adult", "Bestsellers"],
       image: "/images/notes-on-stillness.png",
     },
     {
@@ -169,7 +171,7 @@ const undoBookmark = () => {
       title: "Velvet Hours",
       author: "Elise Monroe",
       price: 18,
-      category: "Fiction",
+      category: ["Fiction", "Young Adult", "Bestsellers"],
       image: "/images/velvet.png",
     },
     {
@@ -177,14 +179,14 @@ const undoBookmark = () => {
       title: "Whisper's of The Forgotten",
       author: "Elise Monroe",
       price: 22,
-      category: "Fiction",
+      category: ["Fiction", "Young Adult", "Bestsellers"],
       image: "/images/whispers.png",
     },
     // Client-Provided Products
     {
       id: 12,
       title: "Brie Mine 4Ever",
-      category: "Books",
+      category: ["Books", "Bestsellers"],
       image: "/images/Client3_Book1.png",
     },
     {
@@ -214,7 +216,7 @@ const undoBookmark = () => {
     {
       id: 17,
       title: "EAT .",
-      category: "Magazines",
+      category: ["Magazines", "Bestsellers"],
       image: "/images/Client3_Magazine3.png",
     },
     {
@@ -236,6 +238,13 @@ const undoBookmark = () => {
       image: "/images/Client3_ToteBag.png",
     },
   ];
+
+  // Filter Gallery Products By Category
+const filteredBooks =
+  selectedCategory === "All"
+    ? books
+    : books.filter((book) => book.category.includes(selectedCategory));
+
 
   // Cart Products With Bookmark Undo Placeholder
 const displayedCart = [...cart];
@@ -486,6 +495,7 @@ if (recentlyBookmarked) {
         <div className="flex items-center gap-6">
           <button
             type="button"
+            onClick={() => setSelectedCategory("All")}
             className="border-b border-[#5C2E5C] pb-1 text-[#5C2E5C]"
           >
             All
@@ -493,6 +503,7 @@ if (recentlyBookmarked) {
 
           <button
             type="button"
+            onClick={() => setSelectedCategory("Fiction")}
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Fiction
@@ -500,6 +511,7 @@ if (recentlyBookmarked) {
 
           <button
             type="button"
+            onClick={() => setSelectedCategory("Nonfiction")}
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Nonfiction
@@ -507,13 +519,23 @@ if (recentlyBookmarked) {
 
           <button
             type="button"
+            onClick={() => setSelectedCategory("Children's")}
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Children&apos;s
           </button>
 
+            <button
+  type="button"
+  onClick={() => setSelectedCategory("Young Adult")}
+  className="pb-1 text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+>
+  Young Adult
+</button>
+
           <button
             type="button"
+            onClick={() => setSelectedCategory("Bestsellers")}
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Bestseller&apos;s
@@ -716,7 +738,7 @@ if (recentlyBookmarked) {
       {/* Gallery Product Grid */}
       <section className="px-45 pb-16">
         <div className="grid grid-cols-5 gap-x-6 gap-y-10">
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <div key={book.id} className="group">
               {/* Gallery Product Image */}
               <div className="relative mb-4 h-100 overflow-hidden bg-[#F8F4EC]">
