@@ -17,7 +17,6 @@ export default function Gallery() {
     setIsCartOpen(false);
   };
 
-
   return (
     <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
       {/* Promotional Banner */}
@@ -159,31 +158,31 @@ export default function Gallery() {
 
       {/* Categories */}
 
-<section className="px-45 py-12">
+      <section className="px-45 py-12">
+        {/* Category Heading + View Cart */}
+        <div className="mb-6 flex items-center justify-between">
+          <p className="text-lg tracking-[0.2em] text-[#5C2E5C] uppercase">
+            Shop by Category
+          </p>
 
-  {/* Category Heading + View Cart */}
-  <div className="mb-6 flex items-center justify-between">
-    <p className="text-lg tracking-[0.2em] text-[#5C2E5C] uppercase">
-      Shop by Category
-    </p>
+          {/* View Cart Button */}
 
+          <button
+            type="button"
+            onClick={() => setIsCartOpen(true)}
+            className="w-75 border border-[#5C2E5C] px-6 py-3 text-[14px] tracking-[0.15em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
+          >
+            View Cart ({cart.length})
+          </button>
+        </div>
 
-  {/* CView Cart Button */}
+        {/* category buttons */}
 
-    <button
-      type="button"
-      onClick={() => setIsCartOpen(true)}
-className="w-75 border border-[#5C2E5C] px-6 py-3 text-[14px] tracking-[0.15em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
-    >
-      View Cart ({cart.length})
-    </button>
-  </div>
-
-  <div className="flex items-center gap-6">
-    <button
-      type="button"
-      className="border-b border-[#5C2E5C] pb-1 text-[#5C2E5C]"
-    >
+        <div className="flex items-center gap-6">
+          <button
+            type="button"
+            className="border-b border-[#5C2E5C] pb-1 text-[#5C2E5C]"
+          >
             All
           </button>
 
@@ -266,8 +265,43 @@ className="w-75 border border-[#5C2E5C] px-6 py-3 text-[14px] tracking-[0.15em] 
         </div>
       </section>
 
-      {/* View Cart */}
-        
+      {/* View Cart :  ==================== CART DRAWER ==================== */}
+
+      {isCartOpen && (
+        <div className="fixed inset-0 z-50">
+          {/* Background Overlay */}
+          <div
+            className="absolute inset-0 bg-[#2E2E4E]/40"
+            onClick={() => setIsCartOpen(false)}
+          ></div>
+
+          {/* Cart Drawer */}
+          <div className="absolute top-0 right-0 h-full w-[450px] bg-[#F8F4EC] p-8 shadow-xl">
+            {/* Cart Header */}
+            <div className="flex items-center justify-between border-b border-[#2E2E4E]/15 pb-5">
+              <h2 className="font-serif text-[28px] text-[#2E2E4E]">
+                Your Cart
+              </h2>
+
+              <button
+                type="button"
+                onClick={() => setIsCartOpen(false)}
+                className="text-[28px] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+                aria-label="Close cart"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Empty Cart */}
+            <div className="flex h-[70%] items-center justify-center">
+              <p className="font-serif text-[18px] text-[#2E2E4E]/50">
+                Your cart is empty.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Book Gallery */}
 
       {/* Promotional Section */}
