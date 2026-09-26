@@ -6,6 +6,7 @@ import Image from "next/image";
 export default function Gallery() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
 
   const clearCart = () => {
     setCart([]);
@@ -69,6 +70,8 @@ export default function Gallery() {
             </a>
           </nav>
 
+          {/* Search Button */}
+
           <div className="flex shrink-0 items-center gap-5 whitespace-nowrap">
             <button
               type="button"
@@ -86,9 +89,11 @@ export default function Gallery() {
               </svg>
             </button>
 
+            {/* Login Button : Bookmark Icon */}
+
             <button
               type="button"
-              aria-label="Wishlist"
+              aria-label="login"
               className="text-sm hover:opacity-60"
             >
               <svg
@@ -103,7 +108,12 @@ export default function Gallery() {
               </svg>
             </button>
 
-            <button type="button" className="text-sm hover:opacity-60">
+            {/* Cart Button : Shopping Bag Icon */}
+            <button
+              type="button"
+              onClick={() => setIsMiniCartOpen(!isMiniCartOpen)}
+              className="text-sm hover:opacity-60"
+            >
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -116,6 +126,40 @@ export default function Gallery() {
                 <path d="M9 8V6a3 3 0 0 1 6 0v2" />
               </svg>
             </button>
+
+            {/* Mini Cart */}
+            {isMiniCartOpen && (
+              <div className="absolute top-[65px] right-45 z-40 w-[340px] border border-[#2E2E4E]/15 bg-[#F8F4EC] p-6 text-left shadow-lg">
+                <div className="mb-5 flex items-center justify-between border-b border-[#2E2E4E]/15 pb-4">
+                  <p className="text-xs tracking-[0.15em] text-[#5C2E5C] uppercase">
+                    Your Bag
+                  </p>
+
+                  <span className="text-xs text-[#2E2E4E]/50">
+                    {cart.length} items
+                  </span>
+                </div>
+
+                {cart.length === 0 ? (
+                  <p className="py-6 text-center font-serif text-[16px] text-[#2E2E4E]/50">
+                    Your bag is empty.
+                  </p>
+                ) : (
+                  <div>{/* Cart items will go here later */}</div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMiniCartOpen(false);
+                    setIsCartOpen(true);
+                  }}
+                  className="mt-5 w-full border border-[#5C2E5C] px-4 py-3 text-xs tracking-[0.15em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
+                >
+                  View Cart →
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </header>
