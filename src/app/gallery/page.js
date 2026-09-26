@@ -1,6 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Gallery() {
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const processOrder = () => {
+    alert("Thank you for your order.");
+    setCart([]);
+    setIsCartOpen(false);
+  };
+
+
   return (
     <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
       {/* Promotional Banner */}
@@ -107,7 +124,7 @@ export default function Gallery() {
       {/* Gallery Hero */}
 
       {/* Gallery Hero */}
-      <section className="relative h-[500px] w-full overflow-hidden">
+      <section className="relative h-125 w-full overflow-hidden">
         {/* Hero Image */}
         <Image
           src="/images/gallery-hero.png"
@@ -119,7 +136,7 @@ export default function Gallery() {
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-l from-[#5C2E5C]/80 via-[#2E2E4E]/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-l from-[#5C2E5C]/80 via-[#2E2E4E]/30 to-transparent"></div>
 
         {/* Hero Text */}
         <div className="absolute inset-0 flex items-center justify-end px-45">
@@ -142,18 +159,31 @@ export default function Gallery() {
 
       {/* Categories */}
 
-      <section className=" px-45 py-12">
-        {/* Category Heading */}
-        <p className="mb-6 text-lg tracking-[0.2em] text-[#5C2E5C] uppercase">
-          Shop by Category
-        </p>
+<section className="px-45 py-12">
 
-        {/* Category Buttons */}
-        <div className="flex items-center gap-10 text-[24px]">
-          <button
-            type="button"
-            className="border-b border-[#5C2E5C] pb-1  text-[#5C2E5C]"
-          >
+  {/* Category Heading + View Cart */}
+  <div className="mb-6 flex items-center justify-between">
+    <p className="text-lg tracking-[0.2em] text-[#5C2E5C] uppercase">
+      Shop by Category
+    </p>
+
+
+  {/* CView Cart Button */}
+
+    <button
+      type="button"
+      onClick={() => setIsCartOpen(true)}
+className="w-75 border border-[#5C2E5C] px-6 py-3 text-[14px] tracking-[0.15em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
+    >
+      View Cart ({cart.length})
+    </button>
+  </div>
+
+  <div className="flex items-center gap-6">
+    <button
+      type="button"
+      className="border-b border-[#5C2E5C] pb-1 text-[#5C2E5C]"
+    >
             All
           </button>
 
@@ -175,14 +205,14 @@ export default function Gallery() {
             type="button"
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
-            Children's
+            Children&apos;s
           </button>
 
           <button
             type="button"
             className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
-            Bestseller's
+            Bestseller&apos;s
           </button>
 
           {/* Sort By */}
@@ -195,14 +225,14 @@ export default function Gallery() {
             <div className="group relative">
               <button
                 type="button"
-                className="flex w-[180px] items-center justify-between border border-[#2E2E4E]/20 bg-[#F8F4EC] px-4 py-3 font-serif text-[16px] text-[#2E2E4E]"
+                className="flex w-45 items-center justify-between border border-[#2E2E4E]/20 bg-[#F8F4EC] px-4 py-3 font-serif text-[16px] text-[#2E2E4E]"
               >
                 Featured
                 <span className="text-[12px]">⌄</span>
               </button>
 
               {/* Dropdown Menu */}
-              <div className="invisible absolute right-0 z-20 w-[180px] border border-t-0 border-[#2E2E4E]/20 bg-[#F8F4EC] opacity-0 shadow-md transition-all group-hover:visible group-hover:opacity-100">
+              <div className="invisible absolute right-0 z-20 w-45 border border-t-0 border-[#2E2E4E]/20 bg-[#F8F4EC] opacity-0 shadow-md transition-all group-hover:visible group-hover:opacity-100">
                 <button
                   type="button"
                   className="block w-full px-4 py-3 text-left font-serif text-[15px] text-[#2E2E4E] hover:bg-[#5C2E5C] hover:text-white"
@@ -237,7 +267,7 @@ export default function Gallery() {
       </section>
 
       {/* View Cart */}
-
+        
       {/* Book Gallery */}
 
       {/* Promotional Section */}

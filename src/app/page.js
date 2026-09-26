@@ -202,7 +202,7 @@ const handleSubscribe = (e) => {
               alt="Cozy bookstore reading nook"
               width={800}
               height={900}
-              className="h-[520px] w-full object-cover"
+              className="h-130 w-full object-cover"
             />
 
             <div className="absolute bottom-8 left-8 bg-[#f7f3ed] px-6 py-4 shadow-lg">
@@ -496,7 +496,7 @@ const handleSubscribe = (e) => {
                       alt={book.title}
                       width={220}
                       height={300}
-                      className="mx-auto h-[250px] w-auto object-contain"
+                      className="mx-auto h-62.5 w-auto object-contain"
                     />
 
                     {/* Heart */}
