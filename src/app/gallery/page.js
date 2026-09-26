@@ -11,6 +11,10 @@ export default function Gallery() {
   const [orderComplete, setOrderComplete] = useState(false);
   const [addedProductId, setAddedProductId] = useState(null);
   const [savedProducts, setSavedProducts] = useState([]);
+  // Undo Recently Bookmarked Product in Cart 
+  const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
+
+
   // Close Mini Cart When Clicking Outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -67,12 +71,34 @@ export default function Gallery() {
     // Move Product From Cart To Bookmarks
 const moveToBookmarks = (book, index) => {
   toggleSavedProduct(book);
+  setRecentlyBookmarked({
+  book: book,
+  index: index,
+});
+
   removeFromCart(index);
 };
 
-  {
-    /* Gallery Product Catalog */
-  }
+// Undo Recently Bookmarked Product
+const undoBookmark = () => {
+  if (!recentlyBookmarked) return;
+
+  const { book, index } = recentlyBookmarked;
+
+  setCart((currentCart) => {
+    const restoredCart = [...currentCart];
+    restoredCart.splice(index, 0, book);
+    return restoredCart;
+  });
+
+  setSavedProducts((currentSaved) =>
+    currentSaved.filter((item) => item.id !== book.id),
+  );
+
+  setRecentlyBookmarked(null);
+};
+
+  // Gallery Product Catalog
   const books = [
     {
       id: 1,
@@ -210,6 +236,18 @@ const moveToBookmarks = (book, index) => {
       image: "/images/Client3_ToteBag.png",
     },
   ];
+
+  // Cart Products With Bookmark Undo Placeholder
+const displayedCart = [...cart];
+
+if (recentlyBookmarked) {
+  displayedCart.splice(recentlyBookmarked.index, 0, {
+    isUndo: true,
+    book: recentlyBookmarked.book,
+  });
+}
+
+
   return (
     <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
       {/* Promotional Banner */}
@@ -560,68 +598,98 @@ const moveToBookmarks = (book, index) => {
               </button>
             </div>
 
-            {/* Cart Product List */}
-            <div className="flex-1 overflow-y-auto py-6">
-              {cart.length === 0 ? (
-                <div className="flex h-full items-center justify-center">
-                  <p className="font-serif text-[18px] text-[#2E2E4E]/50">
-                    {orderComplete
-                      ? "Thank you for your order."
-                      : "Your cart is empty."}
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-5">
-                  {cart.map((book, index) => (
-                    <div
-                      key={`${book.id}-${index}`}
-                      className="flex gap-4 border-b border-[#2E2E4E]/10 pb-5"
-                    >
-                      <Image
-                        src={book.image}
-                        alt={book.title}
-                        width={75}
-                        height={100}
-                        className="h-25 w-18.75 object-cover"
-                      />
 
-                      <div>
-                        <h3 className="font-serif text-[17px] text-[#2E2E4E]">
-                          {book.title}
-                        </h3>
+{/* Cart Product List */}
+<div className="flex-1 overflow-y-auto py-6">
+  {displayedCart.length === 0 ? (
+    <div className="flex h-full items-center justify-center">
+      <p className="font-serif text-[18px] text-[#2E2E4E]/50">
+        {orderComplete
+          ? "Thank you for your order."
+          : "Your cart is empty."}
+      </p>
+    </div>
+  ) : (
+    <div className="space-y-5">
+      {displayedCart.map((item, index) => {
+        {/* Bookmark Undo Card */}
+        if (item.isUndo) {
+          return (
+            <div
+              key={`undo-${item.book.id}`}
+              className="flex items-center justify-between border-b border-[#2E2E4E]/10 py-5"
+            >
+              <p className="font-serif text-[16px] text-[#2E2E4E]">
+                You&apos;ve added &quot;{item.book.title}&quot; to Bookmarks.
+              </p>
 
-                        {book.price && (
-                          <p className="mt-2 text-sm text-[#2E2E4E]/60">
-                            ${book.price.toFixed(2)}
-                          </p>
-                        )}
-                        {/* Remove Product From Cart Button */}
-                        <button
-                          type="button"
-                          onClick={() => removeFromCart(index)}
-                          className="mt-3 mr-8 text-xs tracking-[0.1em] text-[#742C36] uppercase hover:underline"
-                        >
-                          Remove
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => moveToBookmarks(book, index)}
-                          className="text-xs tracking-[0.1em] text-[#5C2E5C] uppercase hover:underline"
-                        >
-                          {savedProducts.some((item) => item.id === book.id)
-                            ? "Added to Bookmarks"
-                            : "Add to Bookmarks"}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {/* Undo Bookmark Button */}
+              <button
+                type="button"
+                onClick={undoBookmark}
+                className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
+              >
+                Undo
+              </button>
             </div>
+          );
+        }
+
+        const book = item;
+
+        return (
+          <div
+            key={`${book.id}-${index}`}
+            className="flex gap-4 border-b border-[#2E2E4E]/10 pb-5"
+          >
+            <Image
+              src={book.image}
+              alt={book.title}
+              width={75}
+              height={100}
+              className="h-25 w-18.75 object-cover"
+            />
+
+            <div>
+              <h3 className="font-serif text-[17px] text-[#2E2E4E]">
+                {book.title}
+              </h3>
+
+              {book.price && (
+                <p className="mt-2 text-sm text-[#2E2E4E]/60">
+                  ${book.price.toFixed(2)}
+                </p>
+              )}
+
+              {/* Remove Product From Cart Button */}
+              <button
+                type="button"
+                onClick={() => removeFromCart(index)}
+                className="mt-3 mr-8 text-xs tracking-widest text-[#742C36] uppercase hover:underline"
+              >
+                Remove
+              </button>
+
+              {/* Add Product To Bookmarks Button */}
+              <button
+                type="button"
+                onClick={() => moveToBookmarks(book, index)}
+                className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
+              >
+                {savedProducts.some((item) => item.id === book.id)
+                  ? "Added to Bookmarks"
+                  : "Add to Bookmarks"}
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )}
+</div>
+
 
             {/* Cart Actions */}
-
-            {/* Clear Cart Button */}
             <div className="border-t border-[#2E2E4E]/15 pt-6">
               <div className="flex gap-3">
                 <button
@@ -631,8 +699,6 @@ const moveToBookmarks = (book, index) => {
                 >
                   Clear Cart
                 </button>
-
-                {/* Checkout Button */}
 
                 <button
                   type="button"
