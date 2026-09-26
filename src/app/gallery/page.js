@@ -18,6 +18,11 @@ export default function Gallery() {
     setOrderComplete(true);
   };
 
+  // Add Product To Cart Function
+  const addToCart = (book) => {
+    setCart([...cart, book]);
+  };
+
   {
     /* Gallery Product Catalog */
   }
@@ -54,7 +59,7 @@ export default function Gallery() {
       category: "Children's",
       image: "/images/a-wilder-garden.png",
     },
-  {
+    {
       id: 5,
       title: " Little Explorer's",
       author: "David Nordstrom",
@@ -62,46 +67,46 @@ export default function Gallery() {
       category: "Children's",
       image: "/images/the-little-explorers.png",
     },
-      {
-    id: 6,
-    title: "A Thousand Summers",
-    author: "Lila Hart",
-    price: 18,
-    category: "Fiction",
-    image: "/images/summers.png",
-  },
-  {
-  id: 8,
-  title: "Notes on Stillness",
-  author: "Jordan Ellis",
-  price: 19,
-  category: "Nonfiction",
-  image: "/images/notes-on-stillness.png",
-},
-{
-    id: 9,
-    title: "The Quiet Path",
-    author: "Elise Monroe",
-    price: 18,
-    category: "Nonfiction",
-    image: "/images/quiet-path.png",
-},
-{
-    id: 10,
-    title: "Velvet Hours",
-    author: "Elise Monroe",
-    price: 18,
-    category: "Fiction",
-    image: "/images/velvet.png",
-},
-{
-    id: 11,
-    title: "Whisper's of The Forgotten",
-    author: "Elise Monroe",
-    price: 22,
-    category: "Fiction",
-    image: "/images/whispers.png",
-},
+    {
+      id: 6,
+      title: "A Thousand Summers",
+      author: "Lila Hart",
+      price: 18,
+      category: "Fiction",
+      image: "/images/summers.png",
+    },
+    {
+      id: 8,
+      title: "Notes on Stillness",
+      author: "Jordan Ellis",
+      price: 19,
+      category: "Nonfiction",
+      image: "/images/notes-on-stillness.png",
+    },
+    {
+      id: 9,
+      title: "The Quiet Path",
+      author: "Elise Monroe",
+      price: 18,
+      category: "Nonfiction",
+      image: "/images/quiet-path.png",
+    },
+    {
+      id: 10,
+      title: "Velvet Hours",
+      author: "Elise Monroe",
+      price: 18,
+      category: "Fiction",
+      image: "/images/velvet.png",
+    },
+    {
+      id: 11,
+      title: "Whisper's of The Forgotten",
+      author: "Elise Monroe",
+      price: 22,
+      category: "Fiction",
+      image: "/images/whispers.png",
+    },
     // Client-Provided Products
     {
       id: 12,
@@ -477,13 +482,46 @@ export default function Gallery() {
               </button>
             </div>
 
-            {/*  Cart Statud Message*/}
-            <div className="flex flex-1 items-center justify-center">
-              <p className="font-serif text-[18px] text-[#2E2E4E]/50">
-                {orderComplete
-                  ? "Thank you for your order."
-                  : "Your cart is empty."}
-              </p>
+            {/* Cart Product List */}
+            <div className="flex-1 overflow-y-auto py-6">
+              {cart.length === 0 ? (
+                <div className="flex h-full items-center justify-center">
+                  <p className="font-serif text-[18px] text-[#2E2E4E]/50">
+                    {orderComplete
+                      ? "Thank you for your order."
+                      : "Your cart is empty."}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  {cart.map((book, index) => (
+                    <div
+                      key={`${book.id}-${index}`}
+                      className="flex gap-4 border-b border-[#2E2E4E]/10 pb-5"
+                    >
+                      <Image
+                        src={book.image}
+                        alt={book.title}
+                        width={75}
+                        height={100}
+                        className="h-[100px] w-[75px] object-cover"
+                      />
+
+                      <div>
+                        <h3 className="font-serif text-[17px] text-[#2E2E4E]">
+                          {book.title}
+                        </h3>
+
+                        {book.price && (
+                          <p className="mt-2 text-sm text-[#2E2E4E]/60">
+                            ${book.price.toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Cart Actions */}
@@ -514,64 +552,62 @@ export default function Gallery() {
         </div>
       )}
 
-{/* Gallery Product Grid */}
-<section className="px-45 pb-16">
-  <div className="grid grid-cols-5 gap-x-6 gap-y-10">
-    {books.map((book) => (
-      <div key={book.id} className="group">
-        
-        {/* Gallery Product Image */}
-        <div className="relative mb-4 h-100 overflow-hidden bg-[#F8F4EC]">
-          <Image
-            src={book.image}
-            alt={book.title}
-            width={300}
-            height={400}
-            className="h-full w-full object-cover"
-          />
+      {/* Gallery Product Grid */}
+      <section className="px-45 pb-16">
+        <div className="grid grid-cols-5 gap-x-6 gap-y-10">
+          {books.map((book) => (
+            <div key={book.id} className="group">
+              {/* Gallery Product Image */}
+              <div className="relative mb-4 h-100 overflow-hidden bg-[#F8F4EC]">
+                <Image
+                  src={book.image}
+                  alt={book.title}
+                  width={300}
+                  height={400}
+                  className="h-full w-full object-cover"
+                />
 
-          {/* Gallery Product Favorite Button */}
-          <button
-            type="button"
-            className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center bg-[#F8F4EC]/90 text-[#2E2E4E] transition hover:text-[#5C2E5C]"
-            aria-label={`Save ${book.title}`}
-          >
-            ♡
-          </button>
+                {/* Gallery Product Favorite Button */}
+                <button
+                  type="button"
+                  className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center bg-[#F8F4EC]/90 text-[#2E2E4E] transition hover:text-[#5C2E5C]"
+                  aria-label={`Save ${book.title}`}
+                >
+                  ♡
+                </button>
+              </div>
+
+              {/* Gallery Product Information */}
+              <div>
+                <h3 className="font-serif text-[18px] text-[#2E2E4E]">
+                  {book.title}
+                </h3>
+
+                {book.author && (
+                  <p className="mt-1 text-[13px] text-[#2E2E4E]/55">
+                    {book.author}
+                  </p>
+                )}
+
+                {book.price && (
+                  <p className="mt-2 text-[14px] text-[#2E2E4E]">
+                    ${book.price.toFixed(2)}
+                  </p>
+                )}
+
+                {/* Gallery Product Add To Cart Button */}
+                <button
+                  type="button"
+                  onClick={() => addToCart(book)}
+                  className="mt-4 w-full border border-[#5C2E5C] px-4 py-2.5 text-[12px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-
-        {/* Gallery Product Information */}
-        <div>
-          <h3 className="font-serif text-[18px] text-[#2E2E4E]">
-            {book.title}
-          </h3>
-
-          {book.author && (
-            <p className="mt-1 text-[13px] text-[#2E2E4E]/55">
-              {book.author}
-            </p>
-          )}
-
-          {book.price && (
-            <p className="mt-2 text-[14px] text-[#2E2E4E]">
-              ${book.price.toFixed(2)}
-            </p>
-          )}
-
-          {/* Gallery Product Add To Cart Button */}
-          <button
-            type="button"
-            className="mt-4 w-full border border-[#5C2E5C] px-4 py-2.5 text-[12px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
-          >
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
-
-
+      </section>
 
       {/* Promotional Section */}
 
