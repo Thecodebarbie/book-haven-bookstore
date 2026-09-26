@@ -37,6 +37,12 @@ const [selectedCategory, setSelectedCategory] = useState("All");
     };
   }, []);
 
+  // Calculate Cart Total
+const cartTotal = cart.reduce(
+  (total, book) => total + (book.price ?? 0),
+  0,
+);
+
   const clearCart = () => {
     setCart([]);
   };
@@ -717,6 +723,17 @@ if (recentlyBookmarked) {
 
 
             {/* Cart Actions */}
+
+            {/* Cart Total */}
+<div className="mb-5 flex items-center justify-between border-t border-[#2E2E4E]/15 pt-5">
+  <p className="font-serif text-[18px] text-[#2E2E4E]">
+    Total
+  </p>
+
+  <p className="font-serif text-[18px] text-[#2E2E4E]">
+    ${cartTotal.toFixed(2)}
+  </p>
+</div>
             <div className="border-t border-[#2E2E4E]/15 pt-6">
               <div className="flex gap-3">
                 <button
