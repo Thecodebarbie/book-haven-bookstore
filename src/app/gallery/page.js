@@ -1,13 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export default function Gallery() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const miniCartRef = useRef(null);
   const [orderComplete, setOrderComplete] = useState(false);
+
+  // Close Mini Cart When Clicking Outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (miniCartRef.current && !miniCartRef.current.contains(event.target)) {
+        setIsMiniCartOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+    setIsMiniCartOpen(false);
+  };
+
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const clearCart = () => {
     setCart([]);
@@ -253,7 +275,7 @@ export default function Gallery() {
               </svg>
             </button>
 
-            {/* Cart Button : Shopping Bag Icon */}
+            {/* Cart Button : Shopping Bag Mini Cart */}
             <button
               type="button"
               onClick={() => setIsMiniCartOpen(!isMiniCartOpen)}
@@ -274,7 +296,10 @@ export default function Gallery() {
 
             {/* Mini Cart */}
             {isMiniCartOpen && (
-              <div className="absolute top-16.25 right-45 z-40 w-85 border border-[#2E2E4E]/15 bg-[#F8F4EC] p-6 text-left shadow-lg">
+              <div
+                ref={miniCartRef}
+                className="absolute top-16.25 right-45 z-40 w-85 border border-[#2E2E4E]/15 bg-[#F8F4EC] p-6 text-left shadow-lg"
+              >
                 <div className="mb-5 flex items-center justify-between border-b border-[#2E2E4E]/15 pb-4">
                   <p className="text-xs tracking-[0.15em] text-[#5C2E5C] uppercase">
                     Your Bag
@@ -290,7 +315,35 @@ export default function Gallery() {
                     Your bag is empty.
                   </p>
                 ) : (
-                  <div>{/* Cart items will go here later */}</div>
+                  /* Navigation Mini Cart Product List */
+                  <div className="max-h-75 space-y-4 overflow-y-auto py-2">
+                    {cart.map((book, index) => (
+                      <div
+                        key={`${book.id}-${index}`}
+                        className="flex items-center gap-3"
+                      >
+                        <Image
+                          src={book.image}
+                          alt={book.title}
+                          width={55}
+                          height={75}
+                          className="h-18.75 w-13.75 object-cover"
+                        />
+
+                        <div>
+                          <p className="font-serif text-[15px] text-[#2E2E4E]">
+                            {book.title}
+                          </p>
+
+                          {book.price && (
+                            <p className="mt-1 text-xs text-[#2E2E4E]/60">
+                              ${book.price.toFixed(2)}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
 
                 <button
@@ -504,7 +557,7 @@ export default function Gallery() {
                         alt={book.title}
                         width={75}
                         height={100}
-                        className="h-[100px] w-[75px] object-cover"
+                        className="h-25 w-18.75 object-cover"
                       />
 
                       <div>
