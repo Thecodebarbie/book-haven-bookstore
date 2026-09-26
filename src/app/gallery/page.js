@@ -11,11 +11,14 @@ export default function Gallery() {
   const [orderComplete, setOrderComplete] = useState(false);
   const [addedProductId, setAddedProductId] = useState(null);
   const [savedProducts, setSavedProducts] = useState([]);
-    // Undo Recently Bookmarked Product in Cart 
+  // Undo Recently Bookmarked Product in Cart
   const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
   // Selected Gallery Category
-const [selectedCategory, setSelectedCategory] = useState("All");
-
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  // Promo Code
+  const [promoCode, setPromoCode] = useState("");
+  const [promoMessage, setPromoMessage] = useState("");
+  const [discount, setDiscount] = useState(0);
 
   // Close Mini Cart When Clicking Outside
   useEffect(() => {
@@ -37,11 +40,24 @@ const [selectedCategory, setSelectedCategory] = useState("All");
     };
   }, []);
 
+
+
+
   // Calculate Cart Total
-const cartTotal = cart.reduce(
-  (total, book) => total + (book.price ?? 0),
-  0,
-);
+  const cartTotal = cart.reduce((total, book) => total + (book.price ?? 0), 0);
+
+  // Apply Promo Code
+const applyPromoCode = () => {
+  if (promoCode.trim().toUpperCase() === "HAVEN20") {
+    setDiscount(20);
+    setPromoMessage("Promo code applied! You saved 20%.");
+  } else {
+    setDiscount(0);
+    setPromoMessage("Invalid promo code.");
+  }
+};
+// Calculate Discounted Cart Total
+const discountedTotal = cartTotal * (1 - discount / 100);
 
   const clearCart = () => {
     setCart([]);
@@ -76,35 +92,35 @@ const cartTotal = cart.reduce(
     );
   };
 
-    // Move Product From Cart To Bookmarks
-const moveToBookmarks = (book, index) => {
-  toggleSavedProduct(book);
-  setRecentlyBookmarked({
-  book: book,
-  index: index,
-});
+  // Move Product From Cart To Bookmarks
+  const moveToBookmarks = (book, index) => {
+    toggleSavedProduct(book);
+    setRecentlyBookmarked({
+      book: book,
+      index: index,
+    });
 
-  removeFromCart(index);
-};
+    removeFromCart(index);
+  };
 
-// Undo Recently Bookmarked Product
-const undoBookmark = () => {
-  if (!recentlyBookmarked) return;
+  // Undo Recently Bookmarked Product
+  const undoBookmark = () => {
+    if (!recentlyBookmarked) return;
 
-  const { book, index } = recentlyBookmarked;
+    const { book, index } = recentlyBookmarked;
 
-  setCart((currentCart) => {
-    const restoredCart = [...currentCart];
-    restoredCart.splice(index, 0, book);
-    return restoredCart;
-  });
+    setCart((currentCart) => {
+      const restoredCart = [...currentCart];
+      restoredCart.splice(index, 0, book);
+      return restoredCart;
+    });
 
-  setSavedProducts((currentSaved) =>
-    currentSaved.filter((item) => item.id !== book.id),
-  );
+    setSavedProducts((currentSaved) =>
+      currentSaved.filter((item) => item.id !== book.id),
+    );
 
-  setRecentlyBookmarked(null);
-};
+    setRecentlyBookmarked(null);
+  };
 
   // Gallery Product Catalog
   const books = [
@@ -246,29 +262,28 @@ const undoBookmark = () => {
   ];
 
   // Filter Gallery Products By Category
-const filteredBooks =
-  selectedCategory === "All"
-    ? books
-    : books.filter((book) => book.category.includes(selectedCategory));
-
+  const filteredBooks =
+    selectedCategory === "All"
+      ? books
+      : books.filter((book) => book.category.includes(selectedCategory));
 
   // Cart Products With Bookmark Undo Placeholder
-const displayedCart = [...cart];
+  const displayedCart = [...cart];
 
-if (recentlyBookmarked) {
-  displayedCart.splice(recentlyBookmarked.index, 0, {
-    isUndo: true,
-    book: recentlyBookmarked.book,
-  });
-}
-
+  if (recentlyBookmarked) {
+    displayedCart.splice(recentlyBookmarked.index, 0, {
+      isUndo: true,
+      book: recentlyBookmarked.book,
+    });
+  }
 
   return (
     <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
       {/* Promotional Banner */}
 
       <section className="bg-[#5C2E5C] px-6 py-2 text-center text-sm text-white">
-        Free shipping on orders over $50 +20% Off Your First Order — Shop Now!
+        Free shipping on orders over $50 +20% Off Your First Order — Use Code
+        HAVEN20
       </section>
 
       {/* Header */}
@@ -531,13 +546,13 @@ if (recentlyBookmarked) {
             Children&apos;s
           </button>
 
-            <button
-  type="button"
-  onClick={() => setSelectedCategory("Young Adult")}
-  className="pb-1 text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
->
-  Young Adult
-</button>
+          <button
+            type="button"
+            onClick={() => setSelectedCategory("Young Adult")}
+            className="pb-1 text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+          >
+            Young Adult
+          </button>
 
           <button
             type="button"
@@ -626,114 +641,159 @@ if (recentlyBookmarked) {
               </button>
             </div>
 
-
-{/* Cart Product List */}
-<div className="flex-1 overflow-y-auto py-6">
-  {displayedCart.length === 0 ? (
-    <div className="flex h-full items-center justify-center">
-      <p className="font-serif text-[18px] text-[#2E2E4E]/50">
-        {orderComplete
-          ? "Thank you for your order."
-          : "Your cart is empty."}
-      </p>
-    </div>
-  ) : (
-    <div className="space-y-5">
-      {displayedCart.map((item, index) => {
-        // Bookmark Undo Card
-        if (item.isUndo) {
-          return (
-            <div
-              key={`undo-${item.book.id}`}
-              className="flex items-center justify-between border-b border-[#2E2E4E]/10 py-5"
-            >
-              <p className="font-serif text-[16px] text-[#2E2E4E]">
-                You&apos;ve added &quot;{item.book.title}&quot; to Bookmarks.
-              </p>
-
-              {/* Undo Bookmark Button */}
-              <button
-                type="button"
-                onClick={undoBookmark}
-                className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
-              >
-                Undo
-              </button>
-            </div>
-          );
-        }
-
-        const book = item;
-
-        return (
-          <div
-            key={`${book.id}-${index}`}
-            className="flex gap-4 border-b border-[#2E2E4E]/10 pb-5"
-          >
-            <Image
-              src={book.image}
-              alt={book.title}
-              width={75}
-              height={100}
-              className="h-25 w-18.75 object-cover"
-            />
-
-            <div>
-              <div className="flex-1">
-                {/* Cart Product Title and Price */}
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-serif text-[17px] text-[#2E2E4E]">
-                    {book.title}
-                  </h3>
-
-                  {book.price && (
-                    <p className="shrink-0 text-md text-[#2E2E4E]">
-                      ${book.price.toFixed(2)}
-                    </p>
-                  )}
+            {/* Cart Product List */}
+            <div className="flex-1 overflow-y-auto py-6">
+              {displayedCart.length === 0 ? (
+                <div className="flex h-full items-center justify-center">
+                  <p className="font-serif text-[18px] text-[#2E2E4E]/50">
+                    {orderComplete
+                      ? "Thank you for your order."
+                      : "Your cart is empty."}
+                  </p>
                 </div>
+              ) : (
+                <div className="space-y-5">
+                  {displayedCart.map((item, index) => {
+                    // Bookmark Undo Card
+                    if (item.isUndo) {
+                      return (
+                        <div
+                          key={`undo-${item.book.id}`}
+                          className="flex items-center justify-between border-b border-[#2E2E4E]/10 py-5"
+                        >
+                          <p className="font-serif text-[16px] text-[#2E2E4E]">
+                            You&apos;ve added &quot;{item.book.title}&quot; to
+                            Bookmarks.
+                          </p>
 
-                {/* Remove Product From Cart Button */}
-                <button
-                  type="button"
-                  onClick={() => removeFromCart(index)}
-                  className="mt-3 mr-8 text-xs tracking-widest text-[#742C36] uppercase hover:underline"
-                >
-                  Remove
-                </button>
+                          {/* Undo Bookmark Button */}
+                          <button
+                            type="button"
+                            onClick={undoBookmark}
+                            className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
+                          >
+                            Undo
+                          </button>
+                        </div>
+                      );
+                    }
 
-                {/* Add Product To Bookmarks Button */}
-                <button
-                  type="button"
-                  onClick={() => moveToBookmarks(book, index)}
-                  className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
-                >
-                  {savedProducts.some((item) => item.id === book.id)
-                    ? "Added to Bookmarks"
-                    : "Add to Bookmarks"}
-                </button>
-              </div>
+                    const book = item;
+
+                    return (
+                      <div
+                        key={`${book.id}-${index}`}
+                        className="flex gap-4 border-b border-[#2E2E4E]/10 pb-5"
+                      >
+                        <Image
+                          src={book.image}
+                          alt={book.title}
+                          width={75}
+                          height={100}
+                          className="h-25 w-18.75 object-cover"
+                        />
+
+                        <div>
+                          <div className="flex-1">
+                            {/* Cart Product Title and Price */}
+                            <div className="flex items-start justify-between gap-4">
+                              <h3 className="font-serif text-[17px] text-[#2E2E4E]">
+                                {book.title}
+                              </h3>
+
+                              {book.price && (
+                                <p className="shrink-0 text-md text-[#2E2E4E]">
+                                  ${book.price.toFixed(2)}
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Remove Product From Cart Button */}
+                            <button
+                              type="button"
+                              onClick={() => removeFromCart(index)}
+                              className="mt-3 mr-8 text-xs tracking-widest text-[#742C36] uppercase hover:underline"
+                            >
+                              Remove
+                            </button>
+
+                            {/* Add Product To Bookmarks Button */}
+                            <button
+                              type="button"
+                              onClick={() => moveToBookmarks(book, index)}
+                              className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
+                            >
+                              {savedProducts.some((item) => item.id === book.id)
+                                ? "Added to Bookmarks"
+                                : "Add to Bookmarks"}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </div>
-        );
-      })}
-    </div>
-  )}
-</div>
-
 
             {/* Cart Actions */}
 
-            {/* Cart Total */}
-<div className="mb-5 flex items-center justify-between border-t border-[#2E2E4E]/15 pt-5">
-  <p className="font-serif text-[18px] text-[#2E2E4E]">
-    Total
+              {/* Promo Code */}
+<div className="mb-5 border-t border-[#2E2E4E]/15 pt-5">
+  <p className="mb-3 text-xs tracking-[0.12em] text-[#2E2E4E] uppercase">
+    Promo Code
   </p>
 
-  <p className="font-serif text-[18px] text-[#2E2E4E]">
-    ${cartTotal.toFixed(2)}
-  </p>
+  <div className="flex">
+    <input
+      type="text"
+      value={promoCode}
+      onChange={(e) => setPromoCode(e.target.value)}
+      placeholder="Enter promo code"
+      className="min-w-0 flex-1 border border-[#2E2E4E]/20 bg-transparent px-3 py-2 text-sm text-[#2E2E4E] outline-none focus:border-[#5C2E5C]"
+    />
+
+    <button
+      type="button"
+      onClick={applyPromoCode}
+      className="bg-[#5C2E5C] px-5 text-xs tracking-[0.12em] text-white uppercase hover:opacity-85"
+    >
+      Apply
+    </button>
+  </div>
+
+  {/* Promo Code Message */}
+  {promoMessage && (
+    <p
+      className={`mt-2 text-xs ${
+        discount > 0 ? "text-[#3E5641]" : "text-[#742C36]"
+      }`}
+    >
+      {promoMessage}
+    </p>
+  )}
 </div>
+
+            {/* Cart Total */}
+            <div className="mb-5 flex items-center justify-between border-t border-[#2E2E4E]/15 pt-5">
+              <p className="font-serif text-[18px] text-[#2E2E4E]">Total</p>
+
+              <p className="font-serif text-[18px] text-[#2E2E4E]">
+                ${cartTotal.toFixed(2)}
+              </p>
+            </div>
+            {/* Discounted Total */}
+{discount > 0 && (
+  <div className="mb-5 flex items-center justify-between">
+    <p className="font-serif text-[18px] text-[#3E5641]">
+      Total After Discount
+    </p>
+
+    <p className="font-serif text-[18px] text-[#3E5641]">
+      ${discountedTotal.toFixed(2)}
+    </p>
+  </div>
+)}
             <div className="border-t border-[#2E2E4E]/15 pt-6">
               <div className="flex gap-3">
                 <button
@@ -779,20 +839,20 @@ if (recentlyBookmarked) {
                   aria-label={`Save ${book.title}`}
                 >
                   {/* Bookmark Icon */}
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  strokeWidth={1.3}
-  stroke="currentColor"
-  className="h-8 w-8 text-[#2E2E4E]"
->
-  <path
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 16.5 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-  />
-</svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.3}
+                    stroke="currentColor"
+                    className="h-8 w-8 text-[#2E2E4E]"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 16.5 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+                    />
+                  </svg>
                 </button>
               </div>
 
