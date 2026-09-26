@@ -634,7 +634,7 @@ if (recentlyBookmarked) {
   ) : (
     <div className="space-y-5">
       {displayedCart.map((item, index) => {
-        {/* Bookmark Undo Card */}
+        // Bookmark Undo Card
         if (item.isUndo) {
           return (
             <div
@@ -673,35 +673,40 @@ if (recentlyBookmarked) {
             />
 
             <div>
-              <h3 className="font-serif text-[17px] text-[#2E2E4E]">
-                {book.title}
-              </h3>
+              <div className="flex-1">
+                {/* Cart Product Title and Price */}
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-serif text-[17px] text-[#2E2E4E]">
+                    {book.title}
+                  </h3>
 
-              {book.price && (
-                <p className="mt-2 text-sm text-[#2E2E4E]/60">
-                  ${book.price.toFixed(2)}
-                </p>
-              )}
+                  {book.price && (
+                    <p className="shrink-0 text-md text-[#2E2E4E]">
+                      ${book.price.toFixed(2)}
+                    </p>
+                  )}
+                </div>
 
-              {/* Remove Product From Cart Button */}
-              <button
-                type="button"
-                onClick={() => removeFromCart(index)}
-                className="mt-3 mr-8 text-xs tracking-widest text-[#742C36] uppercase hover:underline"
-              >
-                Remove
-              </button>
+                {/* Remove Product From Cart Button */}
+                <button
+                  type="button"
+                  onClick={() => removeFromCart(index)}
+                  className="mt-3 mr-8 text-xs tracking-widest text-[#742C36] uppercase hover:underline"
+                >
+                  Remove
+                </button>
 
-              {/* Add Product To Bookmarks Button */}
-              <button
-                type="button"
-                onClick={() => moveToBookmarks(book, index)}
-                className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
-              >
-                {savedProducts.some((item) => item.id === book.id)
-                  ? "Added to Bookmarks"
-                  : "Add to Bookmarks"}
-              </button>
+                {/* Add Product To Bookmarks Button */}
+                <button
+                  type="button"
+                  onClick={() => moveToBookmarks(book, index)}
+                  className="text-xs tracking-widest text-[#5C2E5C] uppercase hover:underline"
+                >
+                  {savedProducts.some((item) => item.id === book.id)
+                    ? "Added to Bookmarks"
+                    : "Add to Bookmarks"}
+                </button>
+              </div>
             </div>
           </div>
         );
