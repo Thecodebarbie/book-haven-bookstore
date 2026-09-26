@@ -14,6 +14,8 @@ export default function Gallery() {
   // Undo Recently Bookmarked Product in Cart
   const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
   // Selected Gallery Category
+  // Selected Gallery Sort Option
+const [sortOption, setSortOption] = useState("Featured");
   const [selectedCategory, setSelectedCategory] = useState("All");
   // Promo Code
   const [promoCode, setPromoCode] = useState("");
@@ -266,6 +268,23 @@ const discountedTotal = cartTotal * (1 - discount / 100);
     selectedCategory === "All"
       ? books
       : books.filter((book) => book.category.includes(selectedCategory));
+
+// Sort Gallery Products
+const sortedBooks = [...filteredBooks].sort((a, b) => {
+  if (sortOption === "Price: Low to High") {
+    return (a.price ?? 0) - (b.price ?? 0);
+  }
+
+  if (sortOption === "Price: High to Low") {
+    return (b.price ?? 0) - (a.price ?? 0);
+  }
+
+  if (sortOption === "Title: A–Z") {
+    return a.title.localeCompare(b.title);
+  }
+
+  return 0;
+});
 
   // Cart Products With Bookmark Undo Placeholder
   const displayedCart = [...cart];
@@ -582,6 +601,8 @@ const discountedTotal = cartTotal * (1 - discount / 100);
               <div className="invisible absolute right-0 z-20 w-45 border border-t-0 border-[#2E2E4E]/20 bg-[#F8F4EC] opacity-0 shadow-md transition-all group-hover:visible group-hover:opacity-100">
                 <button
                   type="button"
+                  
+                  onClick={() => setSortOption("Featured")}
                   className="block w-full px-4 py-3 text-left font-serif text-[15px] text-[#2E2E4E] hover:bg-[#5C2E5C] hover:text-white"
                 >
                   Featured
@@ -589,6 +610,7 @@ const discountedTotal = cartTotal * (1 - discount / 100);
 
                 <button
                   type="button"
+                  onClick={() => setSortOption("Price: Low to High")}
                   className="block w-full px-4 py-3 text-left font-serif text-[15px] text-[#2E2E4E] hover:bg-[#5C2E5C] hover:text-white"
                 >
                   Price: Low to High
@@ -596,6 +618,7 @@ const discountedTotal = cartTotal * (1 - discount / 100);
 
                 <button
                   type="button"
+                  onClick={() => setSortOption("Price: High to Low")}
                   className="block w-full px-4 py-3 text-left font-serif text-[15px] text-[#2E2E4E] hover:bg-[#5C2E5C] hover:text-white"
                 >
                   Price: High to Low
@@ -603,6 +626,7 @@ const discountedTotal = cartTotal * (1 - discount / 100);
 
                 <button
                   type="button"
+                  onClick={() => setSortOption("Title: A–Z")}
                   className="block w-full px-4 py-3 text-left font-serif text-[15px] text-[#2E2E4E] hover:bg-[#5C2E5C] hover:text-white"
                 >
                   Title: A–Z
@@ -820,7 +844,7 @@ const discountedTotal = cartTotal * (1 - discount / 100);
       {/* Gallery Product Grid */}
       <section className="px-45 pb-16">
         <div className="grid grid-cols-5 gap-x-6 gap-y-10">
-          {filteredBooks.map((book) => (
+          {sortedBooks.map((book) => (
             <div key={book.id} className="group">
               {/* Gallery Product Image */}
               <div className="relative mb-4 h-100 overflow-hidden bg-[#F8F4EC]">
