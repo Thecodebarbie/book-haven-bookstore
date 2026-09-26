@@ -64,6 +64,12 @@ export default function Gallery() {
     );
   };
 
+    // Move Product From Cart To Bookmarks
+const moveToBookmarks = (book, index) => {
+  toggleSavedProduct(book);
+  removeFromCart(index);
+};
+
   {
     /* Gallery Product Catalog */
   }
@@ -599,7 +605,7 @@ export default function Gallery() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => toggleSavedProduct(book)}
+                          onClick={() => moveToBookmarks(book, index)}
                           className="text-xs tracking-[0.1em] text-[#5C2E5C] uppercase hover:underline"
                         >
                           {savedProducts.some((item) => item.id === book.id)
