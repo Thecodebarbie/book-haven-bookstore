@@ -109,6 +109,40 @@ export default function Gallery() {
 
       {/* Gallery Hero */}
 
+{/* Gallery Hero */}
+<section className="relative h-[500px] w-full overflow-hidden">
+  {/* Hero Image */}
+  <Image
+    src="/images/gallery-hero.png"
+    alt="Books from the Book Haven collection"
+    width={1920}
+    height={1080}
+    priority
+    className="h-full w-full object-cover"
+  />
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-l from-[#5C2E5C]/80 via-[#2E2E4E]/30 to-transparent"></div>
+
+  {/* Hero Text */}
+ {/* Hero Text */}
+<div className="absolute inset-0 flex items-center justify-end px-45">
+  <div className="max-w-xl text-right text-white">
+    <p className="mb-4 text-xs tracking-[0.2em] uppercase">
+      Our Collection
+    </p>
+
+    <h1 className="mb-6 font-serif text-5xl leading-tight">
+      Books for every chapter.
+    </h1>
+
+    <p className="ml-auto max-w-md text-sm leading-7 text-white/80">
+      Thoughtfully selected stories for slow mornings, late nights, and
+      everything in between.
+    </p>
+  </div>
+</div>
+</section>
 
       {/* Categories */}
 

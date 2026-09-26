@@ -55,7 +55,7 @@ const handleSubscribe = (e) => {
       : books.filter((book) => book.category === selectedCategory);
 
   return (
-    <main className="min-h-screen bg-[#f7f3ed] text-[#5C2E5C]">
+    <main className="min-h-screen bg-[#f7f3ed] text-[#5C2E5C]"> 
       {/* Promotional Banner */}
       <section className="bg-[#5C2E5C] px-6 py-2 text-center text-sm text-white">
         Free shipping on orders over $50 +20% Off Your First Order — Shop Now!
