@@ -379,7 +379,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("All")}
-            className="border-b border-[#5C2E5C] pb-1 text-[#5C2E5C]"
+            className="pb-1 text-[#2E2E4E]/60 hover:border-b hover:border-[#5C2E5C] hover:text-[#5C2E5C]"
           >
             All
           </button>
@@ -387,7 +387,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("Fiction")}
-            className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+            className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Fiction
           </button>
@@ -395,7 +395,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("Nonfiction")}
-            className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+            className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Nonfiction
           </button>
@@ -403,7 +403,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("Children's")}
-            className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+            className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Children&apos;s
           </button>
@@ -411,7 +411,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("Young Adult")}
-            className="pb-1 text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+            className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Young Adult
           </button>
@@ -419,7 +419,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
           <button
             type="button"
             onClick={() => setSelectedCategory("Bestsellers")}
-            className="pb-1  text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
+            className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Bestseller&apos;s
           </button>
