@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 export default function Gallery() {
@@ -324,8 +325,8 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
       {/* Header */}
       <header className="border-b border-[#17233c]/15">
         <div className="mx-auto flex w-full items-center justify-between px-45 py-5">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex shrink-0 items-center gap-3 font-serif text-3xl tracking-tight"
           >
             <Image
@@ -335,34 +336,34 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
               height={40}
             />
             <span>Book Haven</span>
-          </a>
+          </Link>
 
           {/* Navigation */}
           <nav className="flex shrink-0 items-center gap-8 whitespace-nowrap">
-            <a
-              href="#"
+            <Link
+              href="/new-releases"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               New Releases
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/about"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               About
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/haven-circle"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               The Haven Circle
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/contact"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Search Button */}
