@@ -27,21 +27,15 @@ export default function Gallery() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
   const miniCartRef = useRef(null);
-  const [orderComplete, setOrderComplete] = useState(false);
   const [addedProductId, setAddedProductId] = useState(null);
-  const [savedProducts, setSavedProducts] = useState([]);
-  // Undo Recently Bookmarked Product in Cart
-  const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
+  
   // Selected Gallery Category
   // Selected Gallery Sort Option
   const [sortOption, setSortOption] = useState("Featured");
   const [selectedCategory, setSelectedCategory] = useState(
     categoryFromUrl || "All",
   );
-  // Promo Code
-  const [promoCode, setPromoCode] = useState("");
-  const [promoMessage, setPromoMessage] = useState("");
-  const [discount, setDiscount] = useState(0);
+  
   // Footer Newsletter
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -85,9 +79,7 @@ export default function Gallery() {
       setPromoMessage("Invalid promo code.");
     }
   };
-  // Calculate Discounted Cart Total
-  const discountedTotal = cartTotal * (1 - discount / 100);
-
+  
   const handleAddToCart = (book) => {
     addBookToCart(book);
     setAddedProductId(book.id);
@@ -304,15 +296,6 @@ export default function Gallery() {
     return 0;
   });
 
-  // Cart Products With Bookmark Undo Placeholder
-  const displayedCart = [...cart];
-
-  if (recentlyBookmarked) {
-    displayedCart.splice(recentlyBookmarked.index, 0, {
-      isUndo: true,
-      book: recentlyBookmarked.book,
-    });
-  }
 
   return (
     <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
