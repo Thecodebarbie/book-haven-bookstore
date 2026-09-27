@@ -449,7 +449,7 @@ const handleSubscribe = (e) => {
             </p>
 
             <a
-              href="#"
+              href="/gallery"
               className="mt-7 inline-block text-sm tracking-[0.15em] text-[#5C2E5C] underline underline-offset-8 hover:opacity-60"
             >
               SHOP ALL →
