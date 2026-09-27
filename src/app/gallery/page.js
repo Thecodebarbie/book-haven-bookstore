@@ -4,12 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+
 
 export default function Gallery() {
+// Get Cart Data and Functions
+const {
+  cart,
+  cartTotal,
+  addToCart: addBookToCart,
+  removeFromCart,
+  restoreToCart,
+  clearCart,
+} = useCart();
+
   // Get Category From Gallery URL
 const searchParams = useSearchParams();
 const categoryFromUrl = searchParams.get("category");
-  const [cart, setCart] = useState([]);
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
   const miniCartRef = useRef(null);
@@ -56,9 +68,6 @@ const [subscribed, setSubscribed] = useState(false);
 
 
 
-  // Calculate Cart Total
-  const cartTotal = cart.reduce((total, book) => total + (book.price ?? 0), 0);
-
   // Apply Promo Code
 const applyPromoCode = () => {
   if (promoCode.trim().toUpperCase() === "HAVEN20") {
@@ -72,28 +81,17 @@ const applyPromoCode = () => {
 // Calculate Discounted Cart Total
 const discountedTotal = cartTotal * (1 - discount / 100);
 
-  const clearCart = () => {
-    setCart([]);
-  };
-
-  const checkout = () => {
-    setCart([]);
-    setOrderComplete(true);
-  };
-
-  // Add Product To Cart Function
-  const addToCart = (book) => {
-    setCart([...cart, book]);
+  const handleAddToCart = (book) => {
+    addBookToCart(book);
     setAddedProductId(book.id);
-
     setTimeout(() => {
       setAddedProductId(null);
     }, 2000);
   };
 
-  // Remove Individual Product From Cart
-  const removeFromCart = (indexToRemove) => {
-    setCart(cart.filter((_, index) => index !== indexToRemove));
+  const checkout = () => {
+    clearCart();
+    setOrderComplete(true);
   };
 
   // Save or Unsave Product
@@ -122,11 +120,7 @@ const discountedTotal = cartTotal * (1 - discount / 100);
 
     const { book, index } = recentlyBookmarked;
 
-    setCart((currentCart) => {
-      const restoredCart = [...currentCart];
-      restoredCart.splice(index, 0, book);
-      return restoredCart;
-    });
+    restoreToCart(book, index);
 
     setSavedProducts((currentSaved) =>
       currentSaved.filter((item) => item.id !== book.id),
@@ -918,7 +912,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
                 {/* Gallery Product Add To Cart Button */}
                 <button
                   type="button"
-                  onClick={() => addToCart(book)}
+                  onClick={() => handleAddToCart(book)}
                   className="mt-4 w-full border border-[#5C2E5C] px-4 py-2.5 text-[12px] tracking-[0.12em] text-[#5C2E5C] uppercase transition hover:bg-[#5C2E5C] hover:text-white"
                 >
                   {addedProductId === book.id
