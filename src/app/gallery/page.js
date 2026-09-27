@@ -2,8 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export default function Gallery() {
+  // Get Category From Gallery URL
+const searchParams = useSearchParams();
+const categoryFromUrl = searchParams.get("category");
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
@@ -16,7 +20,9 @@ export default function Gallery() {
   // Selected Gallery Category
   // Selected Gallery Sort Option
 const [sortOption, setSortOption] = useState("Featured");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+const [selectedCategory, setSelectedCategory] = useState(
+  categoryFromUrl || "All",
+);
   // Promo Code
   const [promoCode, setPromoCode] = useState("");
   const [promoMessage, setPromoMessage] = useState("");

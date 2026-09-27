@@ -81,25 +81,25 @@ const handleSubscribe = (e) => {
 
           <nav className="flex shrink-0 items-center gap-8 whitespace-nowrap">
             <a
-              href="#"
+              href="/gallery"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               New Releases
             </a>
             <a
-              href="#"
+              href="/about"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               About
             </a>
             <a
-              href="#"
+              href="/haven-circle"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               The Haven Circle
             </a>
             <a
-              href="#"
+              href="/contact"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"
             >
               Contact
@@ -181,13 +181,13 @@ const handleSubscribe = (e) => {
 
             <div className="mt-8 flex items-center gap-6">
               <a
-                href="#"
+                href="/gallery"
                 className="bg-[#5C2E5C] px-6 py-3 text-sm tracking-wide text-white hover:opacity-90"
               >
                 BROWSE THE COLLECTION →
               </a>
               <a
-                href="#"
+                href="/about"
                 className="text-sm tracking-wide text-[#2E2E4E] underline underline-offset-4 hover:opacity-60"
               >
                 OUR PHILOSOPHY
@@ -709,19 +709,19 @@ const handleSubscribe = (e) => {
             <h3 className="mb-4 text-xs tracking-[0.2em]">SHOP</h3>
 
             <div className="flex flex-col gap-3 text-sm text-white/70">
-              <a href="#" className="hover:text-[#8bb990]">
+              <a href="/gallery" className="hover:text-[#8bb990]">
                 New Arrivals
               </a>
               <a href="#monthly-edit" className="hover:text-[#8bb990]">
                 This Month&apos;s Edit
               </a>
-              <a href="#" className="hover:text-[#8bb990]">
+              <a href="/gallery?category=Fiction" className="hover:text-[#8bb990]">
                 Fiction
               </a>
-              <a href="#" className="hover:text-[#8bb990]">
+              <a href="/gallery?category=Nonfiction" className="hover:text-[#8bb990]">
                 Nonfiction
               </a>
-              <a href="#" className="hover:text-[#8bb990]">
+              <a href="/gallery?category=Young%20Adult" className="hover:text-[#8bb990]">
                 Young Adult
               </a>
               {/* <a href="#" className="hover:text-white">Gifts & Accessories</a> future feature */}
