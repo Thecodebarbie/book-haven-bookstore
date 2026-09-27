@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 export default function Nav() {
     // Get Cart Data
@@ -11,6 +12,9 @@ export default function Nav() {
 
   // Control Mini Cart
 const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+
+// Control Cart Drawer
+const [isCartOpen, setIsCartOpen] = useState(false);
 
 // Close Mini Cart On Scroll
 useEffect(() => {
@@ -164,22 +168,32 @@ useEffect(() => {
         <div className="mt-4 space-y-4">
           {cart.map((book, index) => (
             <div
-              key={`${book.id}-${index}`}
-              className="flex justify-between gap-4 border-b border-[#2E2E4E]/10 pb-3"
-            >
-              <div>
-                <p className="font-serif text-sm text-[#2E2E4E]">
-                  {book.title}
-                </p>
-                <p className="mt-1 text-xs text-[#2E2E4E]/50">
-                  {book.author}
-                </p>
-              </div>
+  key={`${book.id}-${index}`}
+  className="flex items-start gap-3 border-b border-[#2E2E4E]/10 pb-3"
+>
+  {/* Mini Cart Book Cover */}
+  <Image
+    src={book.image}
+    alt={book.title}
+    width={45}
+    height={65}
+    className="h-16 w-11 shrink-0 object-cover"
+  />
 
-              <p className="text-sm text-[#2E2E4E]">
-                ${book.price.toFixed(2)}
-              </p>
-            </div>
+  {/* Mini Cart Book Information */}
+  <div className="min-w-0 flex-1">
+    <p className="font-serif text-sm text-[#2E2E4E]">
+      {book.title}
+    </p>
+    <p className="mt-1 text-xs text-[#2E2E4E]/50">
+      {book.author}
+    </p>
+  </div>
+
+  <p className="shrink-0 text-sm text-[#2E2E4E]">
+    ${book.price.toFixed(2)}
+  </p>
+</div>
           ))}
         </div>
 
@@ -190,6 +204,20 @@ useEffect(() => {
             ${cartTotal.toFixed(2)}
           </span>
         </div>
+
+          {/* View Cart Button */}
+
+<button
+  type="button"
+  onClick={() => {
+    setIsMiniCartOpen(false);
+    setIsCartOpen(true);
+  }}
+  className="mt-5 w-full border border-[#5C2E5C] px-4 py-3 text-center text-xs tracking-[0.15em] text-[#5C2E5C] hover:bg-[#5C2E5C] hover:text-white"
+>
+  VIEW CART →
+</button>
+
       </>
     )}
   </div>
@@ -200,6 +228,9 @@ useEffect(() => {
         </div>
       </header>
       
+    <CartDrawer
+    isOpen={isCartOpen}
+    onClose={() => setIsCartOpen(false)}/>
     </>
   );
 }
