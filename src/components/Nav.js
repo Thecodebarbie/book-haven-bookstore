@@ -2,11 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 export default function Nav() {
     // Get Cart Data
-  const { cart } = useCart();
+  const { cart, cartTotal } = useCart();
+
+  // Control Mini Cart
+const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+
+// Close Mini Cart On Scroll
+useEffect(() => {
+  const closeMiniCartOnScroll = () => {
+    setIsMiniCartOpen(false);
+  };
+
+  window.addEventListener("scroll", closeMiniCartOnScroll);
+
+  return () => {
+    window.removeEventListener("scroll", closeMiniCartOnScroll);
+  };
+}, []);
 
   return (
     <>
@@ -64,7 +81,7 @@ export default function Nav() {
           </nav>
 
           {/* Navigation Icons */}
-          <div className="flex shrink-0 items-center gap-5 whitespace-nowrap">
+          <div className="relative flex shrink-0 items-center gap-5 whitespace-nowrap">
             {/* Search Icon */}
             <button
               type="button"
@@ -85,6 +102,7 @@ export default function Nav() {
             </button>
 
             {/* Bookmark Icon */}
+            <div className="relative flex shrink-0 items-center gap-5 whitespace-nowrap">
             <button
               type="button"
               aria-label="Wishlist"
@@ -104,8 +122,10 @@ export default function Nav() {
 
 
 {/* Shopping Bag Icon */}
+
 <button
   type="button"
+  onClick={() => setIsMiniCartOpen((current) => !current)}
   aria-label={`Shopping bag with ${cart.length} items`}
   className="relative text-sm hover:opacity-60"
 >
@@ -128,6 +148,54 @@ export default function Nav() {
     </span>
   )}
 </button>
+
+{/* Mini Cart */}
+
+{isMiniCartOpen && (
+  <div className="absolute right-10 top-full z-50 mt-2 w-80 border border-[#2E2E4E]/15 bg-[#F8F4EC] p-5 shadow-lg">
+    <p className="font-serif text-lg text-[#2E2E4E]">Your Bag</p>
+
+    {cart.length === 0 ? (
+      <p className="mt-4 text-sm text-[#2E2E4E]/60">
+        Your bag is empty.
+      </p>
+    ) : (
+      <>
+        <div className="mt-4 space-y-4">
+          {cart.map((book, index) => (
+            <div
+              key={`${book.id}-${index}`}
+              className="flex justify-between gap-4 border-b border-[#2E2E4E]/10 pb-3"
+            >
+              <div>
+                <p className="font-serif text-sm text-[#2E2E4E]">
+                  {book.title}
+                </p>
+                <p className="mt-1 text-xs text-[#2E2E4E]/50">
+                  {book.author}
+                </p>
+              </div>
+
+              <p className="text-sm text-[#2E2E4E]">
+                ${book.price.toFixed(2)}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mini Cart Total */}
+        <div className="mt-5 flex justify-between border-t border-[#2E2E4E]/15 pt-4">
+          <span className="text-sm text-[#2E2E4E]">Total</span>
+          <span className="text-sm text-[#2E2E4E]">
+            ${cartTotal.toFixed(2)}
+          </span>
+        </div>
+      </>
+    )}
+  </div>
+)}
+
+        </div>
         </div>
         </div>
       </header>
