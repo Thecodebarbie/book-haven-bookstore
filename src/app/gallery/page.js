@@ -65,6 +65,14 @@ const [subscribed, setSubscribed] = useState(false);
     };
   }, []);
 
+  // Scroll To Gallery Products From Homepage Category Link
+useEffect(() => {
+  if (categoryFromUrl) {
+    document
+      .getElementById("gallery-categories")
+      ?.scrollIntoView({ behavior: "auto" });
+  }
+}, [categoryFromUrl]);
 
 
 
@@ -523,7 +531,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
 
       {/* Categories */}
 
-      <section className="px-45 py-12">
+      <section id="gallery-categories" className="px-45 py-12">
         {/* Category Heading + View Cart */}
         <div className="mb-6 flex items-center justify-between">
           <p className="text-lg tracking-[0.2em] text-[#5C2E5C] uppercase">
@@ -853,7 +861,7 @@ const sortedBooks = [...filteredBooks].sort((a, b) => {
       )}
 
       {/* Gallery Product Grid */}
-      <section className="px-45 pb-16">
+      <section id="gallery-products"className="px-45 pb-16">
         <div className="grid grid-cols-5 gap-x-6 gap-y-10">
           {sortedBooks.map((book) => (
             <div key={book.id} className="group">
