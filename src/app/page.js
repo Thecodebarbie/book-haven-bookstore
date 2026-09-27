@@ -284,7 +284,7 @@ const handleSubscribe = (e) => {
       {/* Category Tiles */}
       <section className="px-6 py-16 lg:px-10">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 lg:grid-cols-5">
-          <a href="#" className="group relative h-72 overflow-hidden">
+          <Link href="/gallery" className="group relative h-72 overflow-hidden">
             <Image
               src="/images/category-new-arrivals.png"
               alt="New Arrivals"
@@ -296,8 +296,8 @@ const handleSubscribe = (e) => {
               <h2 className="text-sm tracking-wide">NEW ARRIVALS</h2>
               <span aria-hidden="true">→</span>
             </div>
-          </a>
-          <a href="#" className="group relative h-72 overflow-hidden">
+          </Link>
+          <Link href="gallery?category=Fiction" className="group relative h-72 overflow-hidden">
             <Image
               src="/images/category-fiction.png"
               alt="Fiction"
@@ -309,9 +309,9 @@ const handleSubscribe = (e) => {
               <h2 className="text-sm tracking-wide">FICTION</h2>
               <span aria-hidden="true">→</span>
             </div>
-          </a>
+          </Link>
 
-          <a href="#" className="group relative h-72 overflow-hidden">
+          <Link href="/gallery?category=Nonfiction" className="group relative h-72 overflow-hidden">
             <Image
               src="/images/category-nonfiction.png"
               alt="Nonfiction"
@@ -323,9 +323,9 @@ const handleSubscribe = (e) => {
               <h2 className="text-sm tracking-wide">NONFICTION</h2>
               <span aria-hidden="true">→</span>
             </div>
-          </a>
+          </Link>
 
-          <a href="#" className="group relative h-72 overflow-hidden">
+          <Link href="/gallery?category=Young+Adult" className="group relative h-72 overflow-hidden">
             <Image
               src="/images/category-yadult.png"
               alt="Young Adult"
@@ -337,9 +337,9 @@ const handleSubscribe = (e) => {
               <h2 className="text-sm tracking-wide">YOUNG ADULT</h2>
               <span aria-hidden="true">→</span>
             </div>
-          </a>
+          </Link>
 
-          <a href="#" className="group relative h-72 overflow-hidden">
+          <Link href="/gallery?category=Gifts" className="group relative h-72 overflow-hidden">
             <Image
               src="/images/category-gifts.png"
               alt="Gifts and Accessories"
@@ -351,7 +351,7 @@ const handleSubscribe = (e) => {
               <h2 className="text-sm tracking-wide">GIFTS &amp; ACCESSORIES</h2>
               <span aria-hidden="true">→</span>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 

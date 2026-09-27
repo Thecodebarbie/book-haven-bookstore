@@ -13,6 +13,25 @@ export default function CartDrawer({ isOpen, onClose }) {
     clearCart,
   } = useCart();
 
+// Control Promo Code
+const [promoCode, setPromoCode] = useState("");
+const [discount, setDiscount] = useState(0);
+const [promoMessage, setPromoMessage] = useState("");
+
+// Apply Promo Code
+const applyPromoCode = () => {
+  if (promoCode.trim().toUpperCase() === "HAVEN20") {
+    setDiscount(20);
+    setPromoMessage("Promo code applied! You saved 20%.");
+  } else {
+    setDiscount(0);
+    setPromoMessage("Invalid promo code.");
+  }
+};
+
+// Calculate Discounted Cart Total
+const discountedTotal = cartTotal * (1 - discount / 100);
+
   // Hide Cart Drawer When Closed
 if (!isOpen) return null;
 
@@ -102,6 +121,39 @@ if (!isOpen) return null;
             </div>
           )}
         </div>
+
+                {/* Promo Code Input */}
+        {cart.length > 0 && (
+          <div className="border-t border-[#2E2E4E]/15 pt-5">
+            <p className="mb-3 text-xs tracking-[0.15em] text-[#2E2E4E] uppercase">
+              Promo Code
+            </p>
+
+            <div className="flex">
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                placeholder="Enter promo code"
+                className="min-w-0 flex-1 border border-[#2E2E4E]/20 bg-transparent px-3 py-2 text-sm text-[#2E2E4E] outline-none"
+              />
+
+              <button
+                type="button"
+                onClick={applyPromoCode}
+                className="bg-[#2E2E4E] px-4 py-2 text-xs tracking-[0.15em] text-white hover:bg-[#5C2E5C]"
+              >
+                APPLY
+              </button>
+            </div>
+
+            {promoMessage && (
+              <p className="mt-2 text-xs text-[#2E2E4E]/60">
+                {promoMessage}
+              </p>
+            )}
+          </div>
+        )}
 
         {cart.length > 0 && (
           <div className="mt-6 border-t border-[#2E2E4E]/15 pt-5">
