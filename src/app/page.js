@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 import Nav from "@/components/Nav";
+import { useCart } from "@/context/CartContext";
 
 export default function Home() {
   const books = [
     {
+      id: "home-notes-on-stillness",
       category: "Nonfiction",
       title: "Notes on Stillness",
       author: "Jordan Ellis",
@@ -14,6 +17,7 @@ export default function Home() {
       image: "/images/notes-on-stillness.png",
     },
     {
+      id: "home-the-far-field",
       category: "Fiction",
       title: "The Far Field",
       author: "Elise Carter",
@@ -21,6 +25,7 @@ export default function Home() {
       image: "/images/the-far-field.png",
     },
     {
+      id: "home-a-wilder-garden",
       category: "Children's",
       title: "A Wilder Garden",
       author: "Marlowe James",
@@ -28,6 +33,7 @@ export default function Home() {
       image: "/images/a-wilder-garden.png",
     },
     {
+      id: "home-the-moon-archive",
       category: "Bestsellers",
       title: "The Moon Archive",
       author: "S. L. Monroe",
@@ -38,11 +44,32 @@ export default function Home() {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  // Track Recently Added Product
+const [addedProductId, setAddedProductId] = useState(null);
+
+// Get Cart Functions
+const { addToCart } = useCart();
+
   /* Newsletter Signup */
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  
+// Add Homepage Book To Cart
+const handleAddToCart = (book) => {
+
+
+  const cartBook = {
+    ...book,
+    price: Number(book.price.replace("$", "")),
+  };
+
+  addToCart(cartBook);
+  setAddedProductId(book.id);
+
+  setTimeout(() => {
+    setAddedProductId(null);
+  }, 2000);
+};
 
 const handleSubscribe = (e) => {
   e.preventDefault();
@@ -82,18 +109,18 @@ const handleSubscribe = (e) => {
             </p>
 
             <div className="mt-8 flex items-center gap-6">
-              <a
+              <Link
                 href="/gallery"
                 className="bg-[#5C2E5C] px-6 py-3 text-sm tracking-wide text-white hover:opacity-90"
               >
                 BROWSE THE COLLECTION →
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/about"
                 className="text-sm tracking-wide text-[#2E2E4E] underline underline-offset-4 hover:opacity-60"
               >
                 OUR PHILOSOPHY
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -350,12 +377,12 @@ const handleSubscribe = (e) => {
               and the stories everyone&apos;s talking about.
             </p>
 
-            <a
+            <Link
               href="/gallery"
               className="mt-7 inline-block text-sm tracking-[0.15em] text-[#5C2E5C] underline underline-offset-8 hover:opacity-60"
             >
               SHOP ALL →
-            </a>
+            </Link>
           </div>
 
           {/* Right Side */}
@@ -430,9 +457,10 @@ const handleSubscribe = (e) => {
                   <div className="mt-4 border-t border-[#17233c]/15 pt-4">
                     <button
                       type="button"
+                      onClick={() => handleAddToCart(book)}
                       className="text-xs tracking-[0.15em] text-[#2E2E4E] hover:text-[#5C2E5C]"
                     >
-                      ADD TO BAG →
+                      {addedProductId === book.id ? "ADDED SUCCESSFULLY ✓" : "ADD TO BAG →"}
                     </button>
                   </div>
                 </div>

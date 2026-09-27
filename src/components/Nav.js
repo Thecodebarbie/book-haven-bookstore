@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
+import { useCart } from "@/context/CartContext";
 
 export default function Nav() {
+    // Get Cart Data
+  const { cart } = useCart();
+
   return (
     <>
        {/* Promotional Banner */}
@@ -99,25 +102,33 @@ export default function Nav() {
               </svg>
             </button>
 
-            {/* Shopping Bag Icon */}
-            <button
-              type="button"
-              aria-label="Shopping bag"
-              className="text-sm hover:opacity-60"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path d="M5 8h14l-1 13H6L5 8Z" />
-                <path d="M9 8V6a3 3 0 0 1 6 0v2" />
-              </svg>
-            </button>
-          </div>
+
+{/* Shopping Bag Icon */}
+<button
+  type="button"
+  aria-label={`Shopping bag with ${cart.length} items`}
+  className="relative text-sm hover:opacity-60"
+>
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    className="h-5 w-5"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+  >
+    <path d="M5 8h14l-1 13H6L5 8Z" />
+    <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+  </svg>
+
+  {/* Cart Item Count */}
+  {cart.length > 0 && (
+    <span className="absolute -right-2 -top-2 text-[10px] text-[#5C2E5C]">
+      {cart.length}
+    </span>
+  )}
+</button>
+        </div>
         </div>
       </header>
       
