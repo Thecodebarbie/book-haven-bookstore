@@ -146,6 +146,47 @@ export default function About() {
         Books selected to inspire and connect.
       </p>
     </div>
+  </div>
+</section>
+
+{/* Our Mission */}
+<section className="bg-[#F7F3ED] px-10 py-24">
+  <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
+
+    {/* Mission Image */}
+    <div>
+      <Image
+        src="/images/store-cafe.png"
+        alt="Book Haven bookstore and coffee area"
+        width={1536}
+        height={1024}
+        className="h-auto w-full"
+      />
+    </div>
+
+    {/* Mission Statement */}
+    <div>
+      <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
+        OUR MISSION
+      </p>
+
+      <h2 className="mb-6 font-serif text-4xl leading-tight text-[#2E2E4E]">
+        Come in. Stay awhile.
+      </h2>
+
+      <p className="mb-5 max-w-lg text-sm leading-7 text-[#2E2E4E]/70">
+        Our mission is to create a bookstore where discovering your next
+        great read feels personal. We bring together thoughtfully selected
+        books, a welcoming atmosphere, and a community of readers who share
+        a love for stories.
+      </p>
+
+      <p className="max-w-lg text-sm leading-7 text-[#2E2E4E]/70">
+        Whether you visit to browse the shelves, find a recommendation, or
+        settle in with a book and a cup of coffee, Book Haven is a place
+        designed for readers to feel at home.
+      </p>
+    </div>
 
   </div>
 </section>
