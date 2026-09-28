@@ -260,7 +260,7 @@ const handleContactSubmit = (e) => {
 </section>
 
 {/* Feedback & Custom Orders */}
-<section className="bg-[#F7F3ED] px-10 py-24">
+<section id="contact" className="bg-[#F7F3ED] px-10 py-24">
   <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-[0.85fr_1.15fr]">
 
     {/* Feedback & Custom Orders Content */}

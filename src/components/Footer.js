@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     // Newsletter input signup and subscription status
@@ -94,53 +95,53 @@ export default function Footer() {
                 {/* Shop */}
                 <div className="justify-self-start">
                   <h3 className="mb-4 text-xs tracking-[0.2em]">SHOP</h3>
-      
+
                   <div className="flex flex-col gap-3 text-sm text-white/70">
-                    <a href="/gallery" className="hover:text-[#8bb990]">
+                    <Link href="/gallery" className="hover:text-[#8bb990]">
                       New Arrivals
-                    </a>
-                    <a href="#monthly-edit" className="hover:text-[#8bb990]">
+                    </Link>
+                    <Link href="/#monthly-edit" className="hover:text-[#8bb990]">
                       This Month&apos;s Edit
-                    </a>
-                    <a href="/gallery?category=Fiction" className="hover:text-[#8bb990]">
+                    </Link>
+                    <Link href="/gallery?category=Fiction" className="hover:text-[#8bb990]">
                       Fiction
-                    </a>
-                    <a href="/gallery?category=Nonfiction" className="hover:text-[#8bb990]">
+                    </Link>
+                    <Link href="/gallery?category=Nonfiction" className="hover:text-[#8bb990]">
                       Nonfiction
-                    </a>
-                    <a href="/gallery?category=Young%20Adult" className="hover:text-[#8bb990]">
+                    </Link>
+                    <Link href="/gallery?category=Young%20Adult" className="hover:text-[#8bb990]">
                       Young Adult
-                    </a>
+                    </Link>
                     {/* <a href="#" className="hover:text-white">Gifts & Accessories</a> future feature */}
                   </div>
                 </div>
-      
+
                 {/* About */}
                 <div className="justify-self-center">
                   <h3 className="mb-4 text-xs tracking-[0.2em]">
-                    <a href="#about" className="hover:text-[#8bb990]">
+                    <Link href="/about" className="hover:text-[#8bb990]">
                       ABOUT
-                    </a>
+                    </Link>
                   </h3>
-      
+
                   <div className="flex flex-col gap-3 text-sm text-white/70">
-                    <a href="#hero" className="hover:text-[#8bb990]">
+                    <Link href="/" className="hover:text-[#8bb990]">
                       Home
-                    </a>
+                    </Link>
                     {/*<a href="#" className="hover:text-white">Our Story</a> */}
-                    <a href="#" className="hover:text-[#8bb990]">
+                    <Link href="/haven" className="hover:text-[#8bb990]">
                       The Haven Circle
-                    </a>
-                    <a href="#" className="hover:text-[#8bb990]">
+                    </Link>
+                    <Link href="/about#contact" className="hover:text-[#8bb990]">
                       Contact
-                    </a>
+                    </Link>
                   </div>
                 </div>
-      
-                {/* Visit */}
+
+                {/* Visit Us */}
                 <div className="justify-self-end">
                   <h3 className="mb-4 text-xs tracking-[0.2em]">VISIT US</h3>
-      
+
                   <p className="text-sm text-white/70">
                     48 Haven Street
                     <br />
@@ -150,7 +151,7 @@ export default function Footer() {
                     <br />
                     Sunday: 11 a.m. to 5 p.m.
                   </p>
-      
+
                   <div className="mt-5 flex gap-4 text-sm">
                     <a href="#" className="hover:opacity-60">
                       Instagram
