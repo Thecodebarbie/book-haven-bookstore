@@ -248,6 +248,138 @@ export default function About() {
   </div>
 </section>
 
+{/* Feedback & Custom Orders */}
+<section className="bg-[#F7F3ED] px-10 py-24">
+  <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-[0.85fr_1.15fr]">
+
+    {/* Feedback & Custom Orders Content */}
+    <div>
+      {/* Section Heading */}
+      <div className="mb-10">
+        <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
+          CONNECT WITH US
+        </p>
+
+        <h2 className="mb-5 font-serif text-4xl text-[#2E2E4E]">
+          Tell us what you&apos;re looking for.
+        </h2>
+
+        <p className="text-sm leading-7 text-[#2E2E4E]/70">
+          Share your experience with Book Haven or send us a request for a
+          book you&apos;d like us to find for you.
+        </p>
+      </div>
+
+      {/* Feedback & Custom Order Form */}
+      <form className="space-y-5">
+
+        {/* Name */}
+        <div>
+          <label
+            htmlFor="name"
+            className="mb-2 block text-xs tracking-wide text-[#2E2E4E]"
+          >
+            NAME
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label
+            htmlFor="email"
+            className="mb-2 block text-xs tracking-wide text-[#2E2E4E]"
+          >
+            EMAIL
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
+          />
+        </div>
+
+        {/* Phone Number */}
+        <div>
+          <label
+            htmlFor="phone"
+            className="mb-2 block text-xs tracking-wide text-[#2E2E4E]"
+          >
+            PHONE NUMBER
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
+          />
+        </div>
+
+        {/* Request Type */}
+        <div>
+          <label
+            htmlFor="requestType"
+            className="mb-2 block text-xs tracking-wide text-[#2E2E4E]"
+          >
+            HOW CAN WE HELP?
+          </label>
+
+          <select
+            id="requestType"
+            className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm text-[#2E2E4E] outline-none focus:border-[#5C2E5C]"
+          >
+            <option value="feedback">Share Feedback</option>
+            <option value="custom-order">Request a Custom Order</option>
+          </select>
+        </div>
+
+        {/* Message */}
+        <div>
+          <label
+            htmlFor="message"
+            className="mb-2 block text-xs tracking-wide text-[#2E2E4E]"
+          >
+            MESSAGE
+          </label>
+
+          <textarea
+            id="message"
+            rows="5"
+            className="w-full resize-none border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="bg-[#5C2E5C] px-8 py-3 text-xs tracking-[0.15em] text-white transition hover:opacity-80"
+        >
+          SEND REQUEST
+        </button>
+
+      </form>
+    </div>
+
+    {/* Feedback Image */}
+    <div className="w-full">
+      <Image
+        src="/images/contact.png"
+        alt="Book Haven feedback table with books, coffee, and writing materials"
+        width={1536}
+        height={1024}
+        className="h-auto w-full"
+      />
+    </div>
+
+  </div>
+</section>
+
       <Footer />
     </main>
   );
