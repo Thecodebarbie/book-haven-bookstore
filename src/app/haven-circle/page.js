@@ -280,6 +280,107 @@ const totalPastPages = Math.ceil(
   </div>
 </section>
 
+{/* What Is The Haven Circle */}
+<section className="border-t border-[#2E2E4E]/10 bg-[#F4EEE4] px-8 py-14">
+  <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.35fr_2fr]">
+
+    {/* Haven Circle Description */}
+    <div>
+      <p className="text-xs tracking-[0.2em] uppercase">
+        What is
+      </p>
+
+      <h2 className="mt-1 font-serif text-4xl">
+        The Haven Circle?
+      </h2>
+
+<p className="mt-4 max-w-lg leading-7 text-[#2E2E4E]/75">
+  The Haven Circle is our community of readers, dreamers, and lifelong
+  learners. It&apos;s a space to connect with fellow book lovers,
+  discover new perspectives, and take part in meaningful conversations
+  — in our store and beyond. Members also gain access to exclusive
+  events, special discounts, educational workshops, and resources
+  designed to support their next chapter. Throughout the year, members
+  can participate in scholarship opportunities, college and career
+  workshops, LSAT preparation sessions, author conversations, and other
+  programs created to encourage learning, creativity, and personal
+  growth.
+</p>
+
+      <a
+        href="#join-circle"
+        className="mt-6 inline-block bg-[#3E5641] px-6 py-3 text-xs tracking-[0.15em] text-white uppercase transition hover:opacity-80"
+      >
+        BECOME A MEMBER →
+      </a>
+    </div>
+
+    {/* Haven Circle Benefits */}
+    <div className="grid gap-6 md:grid-cols-3">
+
+      {/* Discover */}
+      <div className="border-l border-[#2E2E4E]/15 px-6 text-center">
+        <Image
+          src="/images/discover-icon.png"
+          alt=""
+          width={80}
+          height={80}
+          className="mx-auto"
+        />
+
+        <h3 className="mt-4 text-sm tracking-[0.18em] uppercase">
+          Discover
+        </h3>
+
+        <p className="mt-3 text-sm leading-6 text-[#2E2E4E]/70">
+          Curated reads and recommendations from our team and community.
+        </p>
+      </div>
+
+      {/* Connect */}
+      <div className="border-l border-[#2E2E4E]/15 px-6 text-center">
+        <Image
+          src="/images/connect-icon.png"
+          alt=""
+          width={80}
+          height={80}
+          className="mx-auto"
+        />
+
+        <h3 className="mt-4 text-sm tracking-[0.18em] uppercase">
+          Connect
+        </h3>
+
+        <p className="mt-3 text-sm leading-6 text-[#2E2E4E]/70">
+          Join discussions, book clubs, and in-store events with
+          fellow readers.
+        </p>
+      </div>
+
+      {/* Be Inspired */}
+      <div className="border-l border-[#2E2E4E]/15 px-6 text-center">
+        <Image
+          src="/images/inspire-icon.png"
+          alt=""
+          width={80}
+          height={80}
+          className="mx-auto"
+        />
+
+        <h3 className="mt-4 text-sm tracking-[0.18em] uppercase">
+          Be Inspired
+        </h3>
+
+        <p className="mt-3 text-sm leading-6 text-[#2E2E4E]/70">
+          Exclusive content, partnerships, and stories that celebrate
+          the power of books.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
       </main>
 
       <Footer />
