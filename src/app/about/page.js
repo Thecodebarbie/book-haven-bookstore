@@ -3,6 +3,12 @@
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import {
+  BookMarked,
+  Bookmark,
+  MessagesSquare,
+  UsersRound,
+} from "lucide-react";
 
 export default function About() {
   return (
@@ -66,6 +72,81 @@ export default function About() {
         className="absolute bottom-0 right-0 h-auto w-[50%] border-8 border-[#F7F3ED] object-contain"
       />
     </div>
+  </div>
+</section>
+
+{/* Book Haven Highlights */}
+<section className="bg-[#5C2E5C] px-10 py-12 text-white">
+  <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 text-center md:grid-cols-4">
+
+    {/* Curated with Care */}
+    <div className="flex flex-col items-center">
+      <BookMarked
+        size={26}
+        strokeWidth={1.4}
+        className="mb-3"
+      />
+
+      <h2 className="font-serif text-lg">
+        Curated with Care
+      </h2>
+
+      <p className="mt-1 text-xs leading-5 text-white/60">
+        Thoughtful books worth discovering.
+      </p>
+    </div>
+
+    {/* Independent & Local */}
+    <div className="flex flex-col items-center">
+      <UsersRound
+        size={26}
+        strokeWidth={1.4}
+        className="mb-3"
+      />
+
+      <h2 className="font-serif text-lg">
+        Independent & Local
+      </h2>
+
+      <p className="mt-1 text-xs leading-5 text-white/60">
+        Rooted in our reading community.
+      </p>
+    </div>
+
+    {/* Readers First */}
+    <div className="flex flex-col items-center">
+      <MessagesSquare
+        size={26}
+        strokeWidth={1.4}
+        className="mb-3"
+      />
+
+      <h2 className="font-serif text-lg">
+        Readers First
+      </h2>
+
+      <p className="mt-1 text-xs leading-5 text-white/60">
+        A welcoming haven for every reader.
+      </p>
+    </div>
+
+    {/* Stories That Stay */}
+    <div className="flex flex-col items-center">
+      <Bookmark
+        size={26}
+        strokeWidth={1.4}
+        className="mb-3"
+      />
+
+      <h2 className="font-serif text-lg">
+        Stories That Stay
+      </h2>
+
+      <p className="mt-1 text-xs leading-5 text-white/60">
+        Books selected to inspire and connect.
+      </p>
+    </div>
+
   </div>
 </section>
 
