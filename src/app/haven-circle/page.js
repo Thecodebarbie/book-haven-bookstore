@@ -6,12 +6,36 @@ import { useState } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
+const communityInvolvement = [
+  {
+    number: "01",
+    title: "Education & Opportunity",
+    description:
+      "Scholarships, college and career workshops, LSAT preparation, and educational resources designed to support members as they pursue their next chapter.",
+    image: "/images/education-and-opportunity.png",
+  },
+  {
+    number: "02",
+    title: "Community Reads",
+    description:
+      "In-store and online book clubs that bring readers together for thoughtful conversations, new perspectives, and shared stories.",
+    image: "/images/community-reads.png",
+  },
+  {
+    number: "03",
+    title: "Local Collaborations",
+    description:
+      "Partnerships with local authors, artists, schools, and organizations to create meaningful events and experiences for the community.",
+    image: "/images/local-collaborations.png",
+  },
+];
+
 export default function HavenCirclePage() {
 
 const pastSelections = [
   {
     title: "Summer on 85th Street",
-    author: "Mia Collins",
+    author: "Kiara Monro",
     image: "/images/summer-on-85th-street.png",
   },
   {
@@ -21,27 +45,27 @@ const pastSelections = [
   },
   {
     title: "The Covert Heir",
-    author: "Elena Voss",
+    author: "Nia Cross",
     image: "/images/the-covert-heir.png",
   },
   {
     title: "Pretty Plans",
-    author: "Sloane Avery",
+    author: "Kennedy Blake",
     image: "/images/pretty-plans.png",
   },
   {
     title: "The Next Chapter Blueprint",
-    author: "Jordan Blake",
+    author: "Jayla Monroe",
     image: "/images/the-next-chapter-blueprint.png",
   },
   {
     title: "The Expanded Mindset",
-    author: "Avery Bennett",
+    author: "Marcus Vaughn",
     image: "/images/the-expanded-mindset.png",
   },
   {
     title: "The Obsidian Heir",
-    author: "Lucian Vale",
+    author: "Zariah Kellen",
     image: "/images/the-obsidian-heir.png",
   },
   {
@@ -378,6 +402,63 @@ const totalPastPages = Math.ceil(
       </div>
 
     </div>
+  </div>
+</section>
+
+{/* Community Involvement */}
+<section className="bg-[#742c36] px-8 py-14 text-white">
+  <div className="mx-auto max-w-7xl">
+
+    {/* Section Heading */}
+    <div className="mb-9">
+      <h2 className="font-serif text-3xl">
+        Community Involvement
+      </h2>
+
+      <p className="mt-2 text-xs tracking-[0.2em] text-white/60 uppercase">
+        How We Give Back
+      </p>
+    </div>
+
+    {/* Community Cards */}
+    <div className="grid gap-8 md:grid-cols-3">
+      {communityInvolvement.map((item) => (
+        <article key={item.number}>
+
+          {/* Community Image */}
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Community Information */}
+          <div className="mt-5 flex gap-5">
+
+            {/* Number */}
+            <span className="font-serif text-3xl text-white/50">
+              {item.number}
+            </span>
+
+            {/* Description */}
+            <div>
+              <h3 className="font-serif text-xl">
+                {item.title}
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                {item.description}
+              </p>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
   </div>
 </section>
 
