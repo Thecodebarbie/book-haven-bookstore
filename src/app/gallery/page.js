@@ -298,7 +298,7 @@ export default function Gallery() {
 
 
   return (
-    <main className="min-h-screen bg-[#F8F4EC] text-[#2E2E4E]">
+    <main className="min-h-screen bg-[#ebe7e0] text-[#2E2E4E]">
       <Nav />
 
       {/* Reusable Cart Drawer */}
