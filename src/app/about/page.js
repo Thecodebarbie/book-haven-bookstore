@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -11,6 +12,16 @@ import {
 } from "lucide-react";
 
 export default function About() {
+
+const [formSubmitted, setFormSubmitted] = useState(false);
+
+const handleContactSubmit = (e) => {
+  e.preventDefault();
+
+  setFormSubmitted(true);
+  e.currentTarget.reset();
+};
+
   return (
     <main className="min-h-screen bg-[#F7F3ED] text-[#2E2E4E]">
       <Nav />
@@ -271,7 +282,9 @@ export default function About() {
       </div>
 
       {/* Feedback & Custom Order Form */}
-      <form className="space-y-5">
+      <form 
+      onSubmit={handleContactSubmit}
+      className="space-y-5">
 
         {/* Name */}
         <div>
@@ -285,6 +298,7 @@ export default function About() {
           <input
             id="name"
             type="text"
+            required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
           />
         </div>
@@ -301,6 +315,7 @@ export default function About() {
           <input
             id="email"
             type="email"
+            required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
           />
         </div>
@@ -317,6 +332,7 @@ export default function About() {
           <input
             id="phone"
             type="tel"
+            required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
           />
         </div>
@@ -351,6 +367,7 @@ export default function About() {
           <textarea
             id="message"
             rows="5"
+            required
             className="w-full resize-none border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
           />
         </div>
@@ -362,6 +379,12 @@ export default function About() {
         >
           SEND REQUEST
         </button>
+
+{formSubmitted && (
+  <p className="text-sm text-[#3E5641]">
+    Thank you! Your request has been received.
+  </p>
+)}
 
       </form>
     </div>
