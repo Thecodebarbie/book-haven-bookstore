@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Footer() {
+    // Newsletter input signup and subscription status
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 

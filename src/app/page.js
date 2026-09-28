@@ -52,9 +52,7 @@ const [addedProductId, setAddedProductId] = useState(null);
 // Get Cart Functions
 const { addToCart } = useCart();
 
-  /* Newsletter Signup */
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+
 
 // Add Homepage Book To Cart
 const handleAddToCart = (book) => {
@@ -73,11 +71,6 @@ const handleAddToCart = (book) => {
   }, 2000);
 };
 
-const handleSubscribe = (e) => {
-  e.preventDefault();
-  setSubscribed(true);
-  setEmail("");
-};
 
   const filteredBooks =
     selectedCategory === "All"
