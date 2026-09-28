@@ -191,6 +191,63 @@ export default function About() {
   </div>
 </section>
 
+{/* Hours & Location */}
+<section className="bg-white px-10 py-20">
+  <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-2">
+
+    {/* Visit Book Haven */}
+    <div>
+      <p className="mb-4 text-xs tracking-[0.2em] text-[#5C2E5C]">
+        VISIT BOOK HAVEN
+      </p>
+
+      <h2 className="mb-6 font-serif text-4xl text-[#2E2E4E]">
+        Find your way to the Haven.
+      </h2>
+
+      <p className="max-w-md text-sm leading-7 text-[#2E2E4E]/70">
+        Stop by to browse our shelves, discover something new, or settle
+        in with a book and a cup of coffee.
+      </p>
+
+      <div className="mt-8">
+        <p className="font-serif text-lg text-[#2E2E4E]">
+          48 Haven Street
+        </p>
+
+        <p className="mt-1 text-sm text-[#2E2E4E]/60">
+          We look forward to welcoming you.
+        </p>
+      </div>
+    </div>
+
+{/* Store Hours */}
+<div className="lg:pl-10">
+  <p className="mb-6 text-xs tracking-[0.2em] text-[#5C2E5C]">
+    STORE HOURS
+  </p>
+
+  <div className="space-y-5 text-sm text-[#2E2E4E]/70">
+    <div className="flex justify-between">
+      <span>Monday – Friday</span>
+      <span>9 a.m. – 8 p.m.</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span>Saturday</span>
+      <span>10 a.m. – 6 p.m.</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span>Sunday</span>
+      <span>11 a.m. – 5 p.m.</span>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
       <Footer />
     </main>
   );
