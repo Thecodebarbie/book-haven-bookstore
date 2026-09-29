@@ -200,7 +200,7 @@ const toggleFaq = (index) => {
     
     {/* Monthly Book */}
     <div>
-      <div className="relative mx-auto aspect-[2/3] w-full max-w-[300px] overflow-hidden">
+      <div className="relative mx-auto aspect-2/3 w-full max-w-[300px] overflow-hidden">
         <Image
           src="/images/dead-girls-dont-text-back.png"
           alt="Dead Girls Don't Text Back, this month's Haven Circle selection"

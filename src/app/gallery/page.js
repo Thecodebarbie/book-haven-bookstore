@@ -36,6 +36,12 @@ export default function Gallery() {
     categoryFromUrl || "All",
   );
   
+  // Gallery Pagination
+const [galleryPage, setGalleryPage] = useState(0);
+
+const productsPerPage = 10;
+
+
   // Footer Newsletter
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -271,6 +277,79 @@ export default function Gallery() {
       category: "Accessories",
       image: "/images/Client3_ToteBag.png",
     },
+    // Haven Circle Books
+{
+  id: 21,
+  title: "Dead Girls Don't Text Back",
+  author: "Arielle Stone",
+  price: 22,
+  category: ["Fiction", "Young Adult", "Bestsellers"],
+  image: "/images/dead-girls-dont-text-back.png",
+},
+{
+  id: 22,
+  title: "Summer on 85th Street",
+  author: "Kiara Monro",
+  price: 20,
+  category: ["Fiction", "Young Adult"],
+  image: "/images/summer-on-85th-street.png",
+},
+{
+  id: 23,
+  title: "Three Stops From Home",
+  author: "Tessa James",
+  price: 21,
+  category: ["Fiction", "Young Adult"],
+  image: "/images/three-stops-from-home.png",
+},
+{
+  id: 24,
+  title: "The Covert Heir",
+  author: "Nia Cross",
+  price: 24,
+  category: ["Fiction", "Bestsellers"],
+  image: "/images/the-covert-heir.png",
+},
+{
+  id: 25,
+  title: "Pretty Plans",
+  author: "Kennedy Blake",
+  price: 19,
+  category: ["Fiction", "Young Adult"],
+  image: "/images/pretty-plans.png",
+},
+{
+  id: 26,
+  title: "The Next Chapter Blueprint",
+  author: "Jayla Monroe",
+  price: 21,
+  category: "Nonfiction",
+  image: "/images/the-next-chapter-blueprint.png",
+},
+{
+  id: 27,
+  title: "The Expanded Mindset",
+  author: "Marcus Vaughn",
+  price: 20,
+  category: "Nonfiction",
+  image: "/images/the-expanded-mindset.png",
+},
+{
+  id: 28,
+  title: "The Obsidian Heir",
+  author: "Zariah Kellen",
+  price: 24,
+  category: ["Fiction", "Bestsellers"],
+  image: "/images/the-obsidian-heir.png",
+},
+{
+  id: 29,
+  title: "Pride Before the Fall",
+  author: "Jordan Ellis",
+  price: 23,
+  category: ["Fiction", "Bestsellers"],
+  image: "/images/pride-before-the-fall.png",
+},
   ];
 
   // Filter Gallery Products By Category
@@ -296,6 +375,17 @@ export default function Gallery() {
     return 0;
   });
 
+  // Paginate Gallery Products
+const totalGalleryPages = Math.ceil(
+  sortedBooks.length / productsPerPage
+);
+
+const galleryStartIndex = galleryPage * productsPerPage;
+
+const visibleBooks = sortedBooks.slice(
+  galleryStartIndex,
+  galleryStartIndex + productsPerPage
+);
 
   return (
     <main className="min-h-screen bg-[#ebe7e0] text-[#2E2E4E]">
@@ -371,7 +461,10 @@ export default function Gallery() {
 
           <button
             type="button"
-            onClick={() => setSelectedCategory("Fiction")}
+            onClick={() => {
+              setSelectedCategory("Fiction");
+              setGalleryPage(0);
+            }}
             className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Fiction
@@ -379,7 +472,10 @@ export default function Gallery() {
 
           <button
             type="button"
-            onClick={() => setSelectedCategory("Nonfiction")}
+            onClick={() => {
+              setSelectedCategory("Nonfiction");
+              setGalleryPage(0);
+            }}
             className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Nonfiction
@@ -387,7 +483,10 @@ export default function Gallery() {
 
           <button
             type="button"
-            onClick={() => setSelectedCategory("Children's")}
+            onClick={() => {
+              setSelectedCategory("Children's");
+              setGalleryPage(0);
+            }}
             className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Children&apos;s
@@ -395,7 +494,10 @@ export default function Gallery() {
 
           <button
             type="button"
-            onClick={() => setSelectedCategory("Young Adult")}
+            onClick={() => {
+              setSelectedCategory("Young Adult");
+              setGalleryPage(0);
+            }}
             className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Young Adult
@@ -403,7 +505,10 @@ export default function Gallery() {
 
           <button
             type="button"
-            onClick={() => setSelectedCategory("Bestsellers")}
+            onClick={() => {
+              setSelectedCategory("Bestsellers");
+              setGalleryPage(0);
+            }}
             className="pb-1 hover:border-b hover:border-[#5C2E5C] text-[#2E2E4E]/60 hover:text-[#5C2E5C]"
           >
             Bestseller&apos;s
@@ -469,7 +574,7 @@ export default function Gallery() {
       {/* Gallery Product Grid */}
       <section id="gallery-products" className="px-45 pb-16">
         <div className="grid grid-cols-5 gap-x-6 gap-y-10">
-          {sortedBooks.map((book) => (
+          {visibleBooks.map((book) => (
             <div key={book.id} className="group">
               {/* Gallery Product Image */}
               <div className="relative mb-4 h-100 overflow-hidden bg-[#F8F4EC]">
@@ -537,6 +642,67 @@ export default function Gallery() {
             </div>
           ))}
         </div>
+
+          {/* Gallery Pagination */}
+{totalGalleryPages > 1 && (
+  <div className="mt-12 flex items-center justify-center gap-3">
+
+    {/* Previous Page */}
+    <button
+      type="button"
+      onClick={() => {
+        setGalleryPage((page) => page - 1);
+        document
+          .getElementById("gallery-products")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }}
+      disabled={galleryPage === 0}
+      aria-label="Previous gallery page"
+      className="flex h-10 w-10 items-center justify-center border border-[#5C2E5C] text-[#5C2E5C] transition hover:bg-[#5C2E5C] hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+    >
+      ←
+    </button>
+
+    {/* Page Numbers */}
+    {Array.from({ length: totalGalleryPages }).map((_, index) => (
+      <button
+        key={index}
+        type="button"
+        onClick={() => {
+          setGalleryPage(index);
+          document
+            .getElementById("gallery-products")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className={`flex h-10 w-10 items-center justify-center border transition ${
+          galleryPage === index
+            ? "border-[#5C2E5C] bg-[#5C2E5C] text-white"
+            : "border-[#2E2E4E]/25 text-[#2E2E4E] hover:border-[#5C2E5C] hover:text-[#5C2E5C]"
+        }`}
+      >
+        {index + 1}
+      </button>
+    ))}
+
+    {/* Next Page */}
+    <button
+      type="button"
+      onClick={() => {
+        setGalleryPage((page) => page + 1);
+        document
+          .getElementById("gallery-products")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }}
+      disabled={galleryPage === totalGalleryPages - 1}
+      aria-label="Next gallery page"
+      className="flex h-10 w-10 items-center justify-center border border-[#5C2E5C] text-[#5C2E5C] transition hover:bg-[#5C2E5C] hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+    >
+      →
+    </button>
+
+  </div>
+)}
+
       </section>
 
       {/* Promotional Section */}
