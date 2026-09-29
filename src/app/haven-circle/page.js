@@ -36,6 +36,28 @@ const communityInvolvement = [
   },
 ];
 
+
+const testimonials = [
+  {
+    quote:
+      "The Haven Circle has introduced me to so many amazing books and people. It truly feels like a second home.",
+    name: "Claire M.",
+    image: "/images/haven-member-claire.png",
+  },
+  {
+    quote:
+      "I love being part of a community that values thoughtful conversation, learning, and a shared love for reading.",
+    name: "Amara R.",
+    image: "/images/haven-member-amara.png",
+  },
+  {
+    quote:
+      "Every event I've attended has been inspiring. I always leave with a new perspective and a much longer reading list!",
+    name: "Ethan P.",
+    image: "/images/haven-member-ethan.png",
+  },
+];
+
 export default function HavenCirclePage() {
 
 const pastSelections = [
@@ -459,6 +481,70 @@ const totalPastPages = Math.ceil(
         </article>
       ))}
     </div>
+  </div>
+</section>
+
+{/* Member Testimonials */}
+<section className="bg-[#F8F4EC] px-8 py-14">
+  <div className="mx-auto max-w-7xl">
+
+    {/* Section Heading */}
+    <div className="mb-8">
+      <h2 className="font-serif text-3xl">
+        What Our Members Are Saying
+      </h2>
+
+      <p className="mt-2 text-xs tracking-[0.2em] text-[#2E2E4E]/55 uppercase">
+        From The Haven Circle
+      </p>
+    </div>
+
+    {/* Testimonials */}
+    <div className="grid gap-6 md:grid-cols-3">
+      {testimonials.map((testimonial) => (
+        <article
+          key={testimonial.name}
+          className="border border-[#2E2E4E]/15 p-7"
+        >
+          {/* Quote */}
+          <div className="flex gap-4">
+            <span className="font-serif text-5xl leading-none text-[#5C2E5C]/40">
+              “
+            </span>
+
+            <p className="font-serif leading-7 text-[#2E2E4E]/80">
+              {testimonial.quote}
+            </p>
+          </div>
+
+          {/* Member */}
+          <div className="mt-6 flex items-center gap-4">
+            <Image
+              src={testimonial.image}
+              alt={`${testimonial.name} Haven Circle member`}
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-full object-cover"
+            />
+
+            <div>
+              <p className="text-xs tracking-[0.15em] uppercase">
+                {testimonial.name}
+              </p>
+
+              {/* Member Rating */}
+              <p
+                className="mt-1 text-sm text-[#742C36]"
+                aria-label="5 out of 5 stars"
+              >
+                ★ ★ ★ ★ ★
+              </p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
   </div>
 </section>
 
