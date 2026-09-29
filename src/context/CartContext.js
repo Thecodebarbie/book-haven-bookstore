@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+
+
 
 // Create Cart Context
 const CartContext = createContext();
@@ -8,6 +10,20 @@ const CartContext = createContext();
 // Cart Provider
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+
+  // Load Cart From Session Storage
+  useEffect(() => {
+    const savedCart = sessionStorage.getItem("bookHavenCart");
+
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Save Cart To Session Storage
+  useEffect(() => {
+    sessionStorage.setItem("bookHavenCart", JSON.stringify(cart));
+  }, [cart]);
 
   // Calculate Cart Total
   const cartTotal = cart.reduce(
