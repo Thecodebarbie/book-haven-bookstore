@@ -20,6 +20,17 @@ const [orderComplete, setOrderComplete] = useState(false);
 // Saved Products
 const [savedProducts, setSavedProducts] = useState([]);
 
+// Cart Product Quantities
+const [quantities, setQuantities] = useState({});
+
+// Update Cart Product Quantity
+const updateQuantity = (bookId, quantity) => {
+  setQuantities((currentQuantities) => ({
+    ...currentQuantities,
+    [bookId]: quantity,
+  }));
+};
+
 // Undo Recently Bookmarked Product in Cart
 const [recentlyBookmarked, setRecentlyBookmarked] = useState(null);
 
@@ -39,8 +50,16 @@ const applyPromoCode = () => {
   }
 };
 
+// Calculate Cart Total With Quantities
+const quantityCartTotal = cart.reduce((total, book) => {
+  const quantity = quantities[book.id] || 1;
+  return total + (book.price || 0) * quantity;
+}, 0);
+
+
 // Calculate Discounted Cart Total
-const discountedTotal = cartTotal * (1 - discount / 100);
+const discountedTotal = quantityCartTotal * (1 - discount / 100);
+
 
 // Save or Unsave Product
 const toggleSavedProduct = (book) => {
@@ -187,6 +206,28 @@ if (!isOpen) return null;
                   {book.author}
                 </p>
               )}
+
+              {/* Cart Product Quantity */}
+<div className="mt-3 flex items-center gap-3">
+  <span className="font-serif text-[14px] text-[#2E2E4E]/60">
+    Quantity
+  </span>
+
+  <select
+    value={quantities[book.id] || 1}
+    onChange={(e) =>
+      updateQuantity(book.id, Number(e.target.value))
+    }
+    aria-label={`Quantity for ${book.title}`}
+    className="w-20 border border-[#2E2E4E]/20 bg-[#F8F4EC] px-3 py-2 font-serif text-[14px] text-[#2E2E4E] outline-none"
+  >
+    {[1, 2, 3, 4, 5].map((quantity) => (
+      <option key={quantity} value={quantity}>
+        {quantity}
+      </option>
+    ))}
+  </select>
+</div>
             </div>
 
             {book.price != null && (
@@ -262,7 +303,7 @@ if (!isOpen) return null;
             <div className="mb-4 flex items-center justify-between text-[#2E2E4E]">
               <span className="text-sm uppercase tracking-[0.2em]">Total</span>
               <span className="font-serif text-[24px]">
-                ${Number(cartTotal || 0).toFixed(2)}
+                ${quantityCartTotal.toFixed(2)}
               </span>
             </div>
 
