@@ -15,11 +15,27 @@ export default function About() {
 
 const [formSubmitted, setFormSubmitted] = useState(false);
 
+// Save Custom Order Information To Local Storage
 const handleContactSubmit = (e) => {
   e.preventDefault();
 
+  const form = e.currentTarget;
+
+  const customOrder = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    requestType: form.requestType.value,
+    message: form.message.value,
+  };
+
+  localStorage.setItem(
+    "bookHavenCustomOrder",
+    JSON.stringify(customOrder)
+  );
+
   setFormSubmitted(true);
-  e.currentTarget.reset();
+  form.reset();
 };
 
   return (
@@ -297,6 +313,7 @@ const handleContactSubmit = (e) => {
 
           <input
             id="name"
+            name="name"
             type="text"
             required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
@@ -314,6 +331,7 @@ const handleContactSubmit = (e) => {
 
           <input
             id="email"
+            name="email"
             type="email"
             required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
@@ -331,6 +349,7 @@ const handleContactSubmit = (e) => {
 
           <input
             id="phone"
+            name="phone"
             type="tel"
             required
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
@@ -348,6 +367,7 @@ const handleContactSubmit = (e) => {
 
           <select
             id="requestType"
+            name="requestType"
             className="w-full border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm text-[#2E2E4E] outline-none focus:border-[#5C2E5C]"
           >
             <option value="feedback">Share Feedback</option>
@@ -366,6 +386,7 @@ const handleContactSubmit = (e) => {
 
           <textarea
             id="message"
+            name="message"
             rows="5"
             required
             className="w-full resize-none border border-[#2E2E4E]/20 bg-white px-4 py-3 text-sm outline-none focus:border-[#5C2E5C]"
