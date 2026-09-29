@@ -58,6 +58,34 @@ const testimonials = [
   },
 ];
 
+const faqs = [
+  {
+    question: "What is The Haven Circle?",
+    answer:
+      "The Haven Circle is Book Haven's membership community for readers who want to discover new books, join discussions, attend events, and connect with fellow book lovers.",
+  },
+  {
+    question: "What is included with my membership?",
+    answer:
+      "Members receive access to book clubs, exclusive events, special discounts, educational workshops, scholarship opportunities, author conversations, and other member resources throughout the year.",
+  },
+  {
+    question: "Do I have to purchase the monthly book from Book Haven?",
+    answer:
+      "No. You are welcome to participate in the monthly discussion whether you purchase your copy from Book Haven or bring your own.",
+  },
+  {
+    question: "Are Haven Circle events available online?",
+    answer:
+      "Select book discussions, workshops, and community events are available online so members can participate even when they cannot visit the store.",
+  },
+  {
+    question: "Can members suggest future books or events?",
+    answer:
+      "Yes! Haven Circle members are encouraged to recommend books, discussion topics, workshops, and ideas for future community events.",
+  },
+];
+
 export default function HavenCirclePage() {
 
 const pastSelections = [
@@ -119,6 +147,13 @@ const visiblePastSelections = pastSelections.slice(
 const totalPastPages = Math.ceil(
   pastSelections.length / booksPerPage
 );
+
+// FAQ
+const [openFaq, setOpenFaq] = useState(null);
+
+const toggleFaq = (index) => {
+  setOpenFaq(openFaq === index ? null : index);
+};
 
   return (
     <>
@@ -542,6 +577,59 @@ const totalPastPages = Math.ceil(
             </div>
           </div>
         </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+{/* Frequently Asked Questions */}
+<section className="bg-[#557159] px-8 py-14 text-white">
+  <div className="mx-auto max-w-7xl">
+
+    {/* Section Heading */}
+    <div className="mb-8">
+      <h2 className="font-serif text-3xl">
+        Frequently Asked Questions
+      </h2>
+
+      <p className="mt-2 text-xs tracking-[0.2em] text-white/60 uppercase">
+        The Haven Circle
+      </p>
+    </div>
+
+    {/* FAQ Questions */}
+    <div className="border border-white/25">
+      {faqs.map((faq, index) => (
+        <div
+          key={faq.question}
+          className="border-b border-white/25 last:border-b-0"
+        >
+          {/* FAQ Button */}
+          <button
+            type="button"
+            onClick={() => toggleFaq(index)}
+            className="flex w-full items-center justify-between px-6 py-5 text-left transition hover:bg-white/5"
+            aria-expanded={openFaq === index}
+          >
+            <span className="font-serif text-lg">
+              {faq.question}
+            </span>
+
+            <span className="ml-6 text-xl">
+              {openFaq === index ? "−" : "+"}
+            </span>
+          </button>
+
+          {/* FAQ Answer */}
+          {openFaq === index && (
+            <div className="border-t border-white/15 px-6 py-5">
+              <p className="max-w-3xl text-sm leading-7 text-white/75">
+                {faq.answer}
+              </p>
+            </div>
+          )}
+        </div>
       ))}
     </div>
 
