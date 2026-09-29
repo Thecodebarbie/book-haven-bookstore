@@ -13,6 +13,8 @@ const communityInvolvement = [
     description:
       "Scholarships, college and career workshops, LSAT preparation, and educational resources designed to support members as they pursue their next chapter.",
     image: "/images/education-and-opportunity.png",
+    event: "LSAT Prep Workshop",
+    eventDate: "October 17",
   },
   {
     number: "02",
@@ -20,6 +22,8 @@ const communityInvolvement = [
     description:
       "In-store and online book clubs that bring readers together for thoughtful conversations, new perspectives, and shared stories.",
     image: "/images/community-reads.png",
+    event: "October Book Club",
+    eventDate: "October 24",
   },
   {
     number: "03",
@@ -27,6 +31,8 @@ const communityInvolvement = [
     description:
       "Partnerships with local authors, artists, schools, and organizations to create meaningful events and experiences for the community.",
     image: "/images/local-collaborations.png",
+    event: "Author Talk & Signing",
+    eventDate: "November 7",
   },
 ];
 
@@ -406,7 +412,7 @@ const totalPastPages = Math.ceil(
 </section>
 
 {/* Community Involvement */}
-<section className="bg-[#742c36] px-8 py-14 text-white">
+<section className="bg-[#F8F4EC] px-8 py-14 text">
   <div className="mx-auto max-w-7xl">
 
     {/* Section Heading */}
@@ -415,7 +421,7 @@ const totalPastPages = Math.ceil(
         Community Involvement
       </h2>
 
-      <p className="mt-2 text-xs tracking-[0.2em] text-white/60 uppercase">
+      <p className="mt-2 text-xs tracking-[0.2em] text uppercase">
         How We Give Back
       </p>
     </div>
@@ -425,40 +431,34 @@ const totalPastPages = Math.ceil(
       {communityInvolvement.map((item) => (
         <article key={item.number}>
 
-          {/* Community Image */}
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              className="object-cover"
-            />
-          </div>
+  {/* Community Image + Event Overlay */}
+<div className="group relative aspect-[16/10] overflow-hidden">
+  <Image
+    src={item.image}
+    alt={item.title}
+    fill
+    className="scale-110 object-cover transition-transform duration-500 ease-out group-hover:scale-100"
+  />
 
-          {/* Community Information */}
-          <div className="mt-5 flex gap-5">
+  {/* Event Overlay */}
+  <div className="absolute inset-x-0 bottom-0 bg-[#742c36]/85 p-5">
+    <p className="text-xs tracking-[0.18em] text uppercase">
+      Upcoming Event
+    </p>
 
-            {/* Number */}
-            <span className="font-serif text-3xl text-white/50">
-              {item.number}
-            </span>
+    <h4 className="mt-2 font-serif text-xl text-white">
+      {item.event}
+    </h4>
 
-            {/* Description */}
-            <div>
-              <h3 className="font-serif text-xl">
-                {item.title}
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                {item.description}
-              </p>
-            </div>
-          </div>
+    <p className="mt-1 text-sm text-white/75">
+      {item.eventDate}
+    </p>
+  </div>
+</div>
 
         </article>
       ))}
     </div>
-
   </div>
 </section>
 
