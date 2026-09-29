@@ -37,7 +37,7 @@ useEffect(() => {
       </section>
 
       {/* Header */}
-      <header className="border-b border-[#17233c]/15">
+      <header className="border-b border-[#17233c]/15 bg-[#F8F4EC] text-[#2E2E4E]">
         <div className="mx-auto flex w-full items-center justify-between px-45 py-5">
           {/* Book Haven Logo */}
           <Link
@@ -54,7 +54,7 @@ useEffect(() => {
           </Link>
 
           {/* Navigation */}
-          <nav className="flex shrink-0 items-center gap-8 whitespace-nowrap">
+          <nav className="flex shrink-0 items-center gap-8 whitespace-nowrap ">
             <Link
               href="/gallery"
               className="text-sm tracking-wide text-[#2E2E4E] hover:text-[#5C2E5C] hover:opacity-60"

@@ -129,7 +129,7 @@ export default function Footer() {
                       Home
                     </Link>
                     {/*<a href="#" className="hover:text-white">Our Story</a> */}
-                    <Link href="/haven" className="hover:text-[#8bb990]">
+                    <Link href="/haven-circle" className="hover:text-[#8bb990]">
                       The Haven Circle
                     </Link>
                     <Link href="/about#contact" className="hover:text-[#8bb990]">
